@@ -1,11 +1,11 @@
 {{- /* Google analytics async */ -}}
-{{- if eq (getenv "HUGO_ENV") "production" | and .Site.GoogleAnalytics -}}
+{{- if .Site.GoogleAnalytics -}}
     {{- template "_internal/google_analytics_async.html" . -}}
 {{- end -}}
 
 {{- /* jQuery https://github.com/jquery/jquery */ -}}
 {{- $jquery := "" -}}
-{{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.jquery_js -}}
+{{- if .Site.Params.cdn.jquery_js -}}
     {{- $jquery = .Site.Params.cdn.jquery_js -}}
 {{- else -}}
     {{- $res := resources.Get "js/lib/jquery/jquery.slim.min.js" -}}
@@ -15,7 +15,7 @@
 
 {{- /* lazysizes https://github.com/aFarkas/lazysizes */ -}}
 {{- $lazysizes := "" -}}
-{{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.lazysizes_js -}}
+{{- if .Site.Params.cdn.lazysizes_js -}}
     {{- $lazysizes = .Site.Params.cdn.lazysizes_js -}}
 {{- else -}}
     {{- $res := resources.Get "js/lib/lazysizes/lazysizes.min.js" -}}
@@ -25,7 +25,7 @@
 
 {{- /* Smooth Scroll https://github.com/cferdinandi/smooth-scroll */ -}}
 {{- $smooth_scroll := "" -}}
-{{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.smooth_scroll_js -}}
+{{- if .Site.Params.cdn.smooth_scroll_js -}}
     {{- $smooth_scroll = .Site.Params.cdn.smooth_scroll_js -}}
 {{- else -}}
     {{- $res := resources.Get "js/lib/smooth-scroll/smooth-scroll.polyfills.min.js" -}}
@@ -37,7 +37,7 @@
 {{- /* TypeIt https://github.com/alexmacarthur/typeit */ -}}
 {{- if .Scratch.Get "typeitMap" -}}
     {{- $typeit := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.typeit_js -}}
+    {{- if .Site.Params.cdn.typeit_js -}}
         {{- $typeit = .Site.Params.cdn.typeit_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/typeit/typeit.min.js" -}}
@@ -57,21 +57,21 @@
 {{- if .Site.Params.math.enable | and (ne .Params.math false) -}}
     {{- $math := .Site.Params.math -}}
     {{- $katex_css := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.katex_css -}}
+    {{- if .Site.Params.cdn.katex_css -}}
         {{- $katex_css = .Site.Params.cdn.katex_css -}}
     {{- else -}}
         {{- $res := resources.Get "css/lib/katex/katex.min.css" -}}
         {{- $katex_css = printf "<link rel=\"stylesheet\" href=\"%s\">" $res.RelPermalink -}}
     {{- end -}}
     {{- $katex_js := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.katex_js -}}
+    {{- if .Site.Params.cdn.katex_js -}}
         {{- $katex_js = .Site.Params.cdn.katex_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/katex/katex.min.js" -}}
         {{- $katex_js = printf "<script src=\"%s\"></script>" $res.RelPermalink -}}
     {{- end -}}
     {{- $katex_auto_render_js := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.katex_auto_render_js -}}
+    {{- if .Site.Params.cdn.katex_auto_render_js -}}
         {{- $katex_auto_render_js = .Site.Params.cdn.katex_auto_render_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/katex/auto-render.min.js" -}}
@@ -80,14 +80,14 @@
     {{- $katex := delimit (slice $katex_css $katex_js $katex_auto_render_js) "" -}}
     {{- if $math.copy_tex -}}
         {{- $katex_copy_tex_css := "" -}}
-        {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.katex_copy_tex_css -}}
+        {{- if .Site.Params.cdn.katex_copy_tex_css -}}
             {{- $katex_copy_tex_css = .Site.Params.cdn.katex_copy_tex_css -}}
         {{- else -}}
             {{- $res := resources.Get "css/lib/katex/copy-tex.min.css" -}}
             {{- $katex_copy_tex_css = printf "<link rel=\"stylesheet\" href=\"%s\">" $res.RelPermalink -}}
         {{- end -}}
         {{- $katex_copy_tex_js := "" -}}
-        {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.katex_copy_tex_js -}}
+        {{- if .Site.Params.cdn.katex_copy_tex_js -}}
             {{- $katex_copy_tex_js = .Site.Params.cdn.katex_copy_tex_js -}}
         {{- else -}}
             {{- $res := resources.Get "js/lib/katex/copy-tex.min.js" -}}
@@ -97,7 +97,7 @@
     {{- end -}}
     {{- if $math.mhchem -}}
         {{- $katex_mhchem_js := "" -}}
-        {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.katex_mhchem_js -}}
+        {{- if .Site.Params.cdn.katex_mhchem_js -}}
             {{- $katex_mhchem_js = .Site.Params.cdn.katex_mhchem_js -}}
         {{- else -}}
             {{- $res := resources.Get "js/lib/katex/mhchem.min.js" -}}
@@ -128,7 +128,7 @@
 {{- /* mermaid https://github.com/knsv/mermaid */ -}}
 {{- if .Scratch.Get "mermaidMap" -}}
     {{- $mermaid := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.mermaid_js -}}
+    {{- if .Site.Params.cdn.mermaid_js -}}
         {{- $mermaid = .Site.Params.cdn.mermaid_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/mermaid/mermaid.min.js" -}}
@@ -146,14 +146,14 @@
 {{- if .Scratch.Get "music" -}}
     {{- /* APlayer https://github.com/MoePlayer/APlayer */ -}}
     {{- $aplayer_css := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.aplayer_css -}}
+    {{- if .Site.Params.cdn.aplayer_css -}}
         {{- $aplayer_css = .Site.Params.cdn.aplayer_css -}}
     {{- else -}}
         {{- $res := resources.Get "css/lib/aplayer/APlayer.min.css" -}}
         {{- $aplayer_css = printf "<link rel=\"stylesheet\" href=\"%s\">" $res.RelPermalink -}}
     {{- end -}}
     {{- $aplayer_js := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.aplayer_js -}}
+    {{- if .Site.Params.cdn.aplayer_js -}}
         {{- $aplayer_js = .Site.Params.cdn.aplayer_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/aplayer/APlayer.min.js" -}}
@@ -164,7 +164,7 @@
 
     {{- /* MetingJS https://github.com/metowolf/MetingJS */ -}}
     {{- $meting := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.meting_js -}}
+    {{- if .Site.Params.cdn.meting_js -}}
         {{- $meting = .Site.Params.cdn.meting_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/meting/Meting.min.js" -}}
@@ -176,7 +176,7 @@
 {{- /* jQuery.countdown https://github.com/hilios/jQuery.countdown */ -}}
 {{- if .Scratch.Get "countdownMap" -}}
     {{- $countdown := "" -}}
-    {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.jquery_countdown_js -}}
+    {{- if .Site.Params.cdn.jquery_countdown_js -}}
         {{- $countdown = .Site.Params.cdn.jquery_countdown_js -}}
     {{- else -}}
         {{- $res := resources.Get "js/lib/jquery-countdown/jquery.countdown.min.js" -}}
@@ -193,14 +193,14 @@
     {{- /* ECharts https://github.com/apache/incubator-echarts */ -}}
     {{- if .Scratch.Get "echartsMap" -}}
         {{- $echarts_js := "" -}}
-        {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.echarts_js -}}
+        {{- if .Site.Params.cdn.echarts_js -}}
         {{- $echarts_js = .Site.Params.cdn.echarts_js -}}
         {{- else -}}
         {{- $res := resources.Get "js/lib/echarts/echarts.min.js" -}}
         {{- $echarts_js = printf "<script src=\"%s\"></script>" $res.RelPermalink -}}
         {{- end -}}
         {{- $echarts_macarons_js := "" -}}
-        {{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.echarts_macarons_js -}}
+        {{- if .Site.Params.cdn.echarts_macarons_js -}}
         {{- $echarts_macarons_js = .Site.Params.cdn.echarts_macarons_js -}}
         {{- else -}}
         {{- $res := resources.Get "js/lib/echarts/macarons.js" | minify -}}
