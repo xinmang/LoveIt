@@ -1,6 +1,13 @@
 <footer class="footer">
     <div class="copyright">
         {{- /* Hugo and LoveIt */ -}}
+
+        <!-- live2d 导入js资源 注意路径不要写错 -->
+        <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script>
+        <script>
+		    L2Dwidget.init({pluginRootPath:"live2dw/",pluginJsPath:"lib/",pluginModelPath:"live2d-widget-model-hijiki/assets/",tagMode:!1,debug:!1,model:{scale:1,jsonPath:"/live2dw/live2d-widget-model-hijiki/assets/hijiki.model.json"},display:{position:"left",width:150,height:350,hOffset:40},mobile:{show:!1},log:!1})
+	    </script>
+
         <div class="copyright-line">
             {{- printf (T "powered") `<a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a>` | safeHTML }} | {{ T "theme" }}<a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
         </div>
