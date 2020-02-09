@@ -14,7 +14,8 @@
   .navbar-container {
     width: auto;
     text-align: center;
-    margin: 0 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 
