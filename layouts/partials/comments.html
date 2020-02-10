@@ -67,13 +67,13 @@
             (function () {
                 // Don't ever inject Valine on localhost--it creates unwanted
                 // discussions from "localhost" on your Valine account...
-                if (window.location.hostname == "localhost")
-                    return;
+                // if (window.location.hostname == "localhost")
+                //    return;
                 new Valine({
                     el: "#vcomments",
                     appId: "{{ .Site.Params.valine.appId }}",
                     appKey: "{{ .Site.Params.valine.appKey }}",
-                    meta: ["nick", "mail"],
+                    meta: ["nick", "mail", "link"],
                     notify: "{{ .Site.Params.valine.notify }}",
                     verify: "{{ .Site.Params.valine.verify }}",
                     avatar: "{{ .Site.Params.valine.avatar }}",
