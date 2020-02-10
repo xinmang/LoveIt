@@ -8,8 +8,20 @@
 		    L2Dwidget.init({pluginRootPath:"live2dw/",pluginJsPath:"lib/",pluginModelPath:"live2d-widget-model-hijiki/assets/",tagMode:!1,debug:!1,model:{scale:1,jsonPath:"/live2dw/live2d-widget-model-hijiki/assets/hijiki.model.json"},display:{position:"left",width:150,height:350,hOffset:40},mobile:{show:!1},log:!1})
 	    </script>
 
+        <!-- 不蒜子访问统计 -->
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
         <div class="copyright-line">
             {{- printf (T "powered") `<a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a>` | safeHTML }} | {{ T "theme" }}<a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line">
+            <span id="busuanzi_container_site_uv_null">
+                访客数：<span id="busuanzi_value_site_uv"></span>
+            </span> |
+            <span id="busuanzi_container_site_pv_null">
+                访问量：<span id="busuanzi_value_site_pv"></span>
+            </span>
         </div>
 
         <div class="copyright-line">
