@@ -1,12 +1,13 @@
-@charset 'utf-8';
-
 // ==============================
 // Variables
 // ==============================
 
 // ========== Global ========== //
-// Font family
+// Font and Line Height
 $global-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft Yahei, Segoe UI, Helvetica, Arial, sans-serif, Segoe UI Emoji !default;
+$global-font-size: 16px;
+$global-font-weight: 400;
+$global-line-height: 1.5rem;
 
 // Color of the background
 $global-background-color: #fff !default;
@@ -47,24 +48,40 @@ $selection-color: rgba(38, 139, 211, 0.2) !default;
 $selection-color-dark: rgba(38, 139, 211, 0.3) !default;
 // ========== Selection ========== //
 
-// ========== Navbar ========== //
-// Color of the navbar background
-$navbar-background-color: #fafafa !default;
-$navbar-background-color-dark: #252627 !default;
+// ========== Header ========== //
+// Height of the header
+$header-height-desktop: 3.5rem !default;
+$header-height-mobile: 3.5rem !default;
 
-// Color of the hover navbar item
-$navbar-hover-color: #161209 !default;
-$navbar-hover-color-dark: #fff !default;
-// ========== Navbar ========== //
+// Color of the header background
+$header-background-color: #f8f8f8 !default;
+$header-background-color-dark: #252627 !default;
 
-// ========== Post Content ========== //
-// Color of the post link
-$post-link-color: #2d96bd !default;
-$post-link-color-dark: #eee !default;
+// Position of the header
+$header-position-desktop: if($header-normal-mode-desktop, static, fixed) !default;
+$header-position-mobile: if($header-normal-mode-mobile, static, fixed) !default;
 
-// Color of the hover post link
-$post-link-hover-color: #ef3982 !default;
-$post-link-hover-color-dark: #2d96bd !default;
+// Top of the page padding
+$page-padding-top-desktop: if($header-normal-mode-desktop, 0, $header-height-desktop) !default;
+$page-padding-top-mobile: if($header-normal-mode-mobile, 0, $header-height-mobile) !default;
+
+// Color of the hover header item
+$header-hover-color: #161209 !default;
+$header-hover-color-dark: #fff !default;
+// ========== Header ========== //
+
+// ========== Single Content ========== //
+// Font size of the TOC
+$toc-title-font-size: 1.2rem !default;
+$toc-content-font-size: 0.9rem !default;
+
+// Color of the single link
+$single-link-color: #2d96bd !default;
+$single-link-color-dark: #55bde2 !default;
+
+// Color of the hover single link
+$single-link-hover-color: #ef3982 !default;
+$single-link-hover-color-dark: #bdebfc !default;
 
 // Color of the table background
 $table-background-color: #fff !default;
@@ -73,7 +90,7 @@ $table-background-color-dark: #272c34 !default;
 // Color of the table thead
 $table-thead-color: #ededed !default;
 $table-thead-color-dark: #20252b !default;
-// ========== Post Content ========== //
+// ========== Single Content ========== //
 
 // ========== Pagination ========== //
 // Color of the link in pagination
