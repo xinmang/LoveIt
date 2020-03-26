@@ -1,6 +1,7 @@
 ---
 weight: 2
 title: "主题文档 - 内容"
+subtitle: ""
 date: 2020-03-05T16:30:05+08:00
 lastmod: 2020-03-05T16:30:05+08:00
 draft: false
@@ -19,6 +20,14 @@ featuredImagePreview: ""
 toc: true
 autoCollapseToc: false
 math: true
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
 lightgallery: true
 linkToMarkdown: true
 share:
@@ -38,7 +47,7 @@ comment: true
 * 保持简单的静态页面存放在 `content` 目录, 例如: `content/about.md`
 * 保持图片之类的媒体资源存放在 `static` 目录, 例如: `static/images/screenshot.png`
 
-## 2 前置参数
+## 2 前置参数 {#front-matter}
 
 **Hugo** 允许你在文章内容前面添加 `yaml`, `toml` 或者 `json` 格式的前置参数.
 
@@ -47,6 +56,7 @@ comment: true
 ```yaml
 ---
 title: "我的第一篇文章"
+subtitle: ""
 date: 2020-03-04T15:58:26+08:00
 lastmod: 2020-03-04T15:58:26+08:00
 draft: true
@@ -65,6 +75,14 @@ featuredImagePreview: ""
 toc: false
 autoCollapseToc: true
 math: true
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
 lightgallery: true
 linkToMarkdown: true
 share:
@@ -74,6 +92,7 @@ comment: true
 ```
 
 * **title**: 文章标题.
+* **subtitle**: {{< version 0.2.0 >}} 文章副标题.
 * **date**: 这篇文章创建的日期时间. 它通常是从文章的前置参数中的 `date` 字段获取的, 但是也可以在 [网站配置](../theme-documentation-basics/#site-configuration) 中设置.
 * **lastmod**: 上次修改内容的日期时间.
 * **draft**: 如果设为 `true`, 除非 `hugo` 命令使用了 `--buildDrafts`/`-D` 参数, 这篇文章不会被渲染.
@@ -89,6 +108,7 @@ comment: true
 * **toc**: 如果设为 `true`, 这篇文章会显示右侧目录.
 * **autoCollapseToc**: 如果设为 `true`, 文章目录会自动折叠.
 * **math**: 如果设为 `true`, 将自动渲染文章中的数学公式.
+* **mapbox**: {{< version 0.2.0 >}} 和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.mapbox` 对象相同.
 * **lightgallery**: 如果设为 `true`, 文章中的图片将可以按照画廊形式呈现.
 * **linkToMarkdown**: 如果设为 `true`, 内容的页脚将显示指向原始 Markdown 文件的链接.
 * **share**: 和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.share` 对象相同.
@@ -237,6 +257,24 @@ $$ \ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-} $$
 呈现的输出效果如下:
 
 [Hugo]^(一个开源的静态网站生成工具)
+
+### 分数
+
+{{< version 0.2.0 >}}
+
+**LoveIt** 主题支持一种 **分数** Markdown 扩展语法:
+
+```markdown
+[浅色]{?/}[深色]
+
+[99]{?/}[100]
+```
+
+呈现的输出效果如下:
+
+[浅色]/[深色]
+
+[90]/[100]
 
 ### Font Awesome
 

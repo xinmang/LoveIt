@@ -1,6 +1,7 @@
 ---
 weight: 2
 title: "Theme Documentation - Content"
+subtitle: ""
 date: 2020-03-05T15:58:26+08:00
 lastmod: 2020-03-05T15:58:26+08:00
 draft: false
@@ -19,6 +20,14 @@ featuredImagePreview: ""
 toc: true
 autoCollapseToc: false
 math: true
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
 lightgallery: true
 linkToMarkdown: true
 share:
@@ -38,7 +47,7 @@ A few suggestions to help you get a good looking site quickly:
 * Keep static pages in the `content` directory, for example: `content/about.md`
 * Keep media like images in the `static` directory, for example: `static/images/screenshot.png`
 
-## 2 Front Matter
+## 2 Front Matter {#front-matter}
 
 **Hugo** allows you to add front matter in `yaml`, `toml` or `json` to your content files.
 
@@ -47,6 +56,7 @@ Here is a default front matter from the default archetype:
 ```yaml
 ---
 title: "My First Post"
+subtitle: ""
 date: 2020-03-04T15:58:26+08:00
 lastmod: 2020-03-04T15:58:26+08:00
 draft: true
@@ -65,6 +75,14 @@ featuredImagePreview: ""
 toc: false
 autoCollapseToc: true
 math: true
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
 lightgallery: true
 linkToMarkdown: true
 share:
@@ -74,6 +92,7 @@ comment: true
 ```
 
 * **title**: the title for the content.
+* **subtitle**: {{< version 0.2.0 >}} the subtitle for the content.
 * **date**: the datetime assigned to this page, which is usually fetched from the `date` field in front matter, but this behaviour is configurabl in the [site configuration](../theme-documentation-basics/#site-configuration).
 * **lastmod**: the datetime at which the content was last modified.
 * **draft**: if `true`, the content will not be rendered unless the `--buildDrafts`/`-D` flag is passed to the `hugo` command.
@@ -89,6 +108,7 @@ comment: true
 * **toc**: if `true`, the content will show the table of the contents.
 * **autoCollapseToc**: if `true`, the table of the contents will be automatically collapsed.
 * **math**: if `true`, the mathematical formula in the content will be automatically rendered.
+* **mapbox**: {{< version 0.2.0 >}} the same as `params.mapbox` in the [site configuration](../theme-documentation-basics/#site-configuration).
 * **lightgallery**: if `true`, images in the content will be shown as the gallery.
 * **linkToMarkdown**: if `true`, the footer of the content will show the link to the orignal Markdown file.
 * **share**: the same as `params.share` in the [site configuration](../theme-documentation-basics/#site-configuration).
@@ -237,6 +257,24 @@ An extended Markdown syntax for **ruby annotation** is supported in **LoveIt** t
 The rendered output looks like this:
 
 [Hugo]^(An open-source static site generator)
+
+### Fraction
+
+{{< version 0.2.0 >}}
+
+An extended Markdown syntax for **fraction** is supported in **LoveIt** theme:
+
+```markdown
+[Light]{?/}[Dark]
+
+[99]{?/}[100]
+```
+
+The rendered output looks like this:
+
+[Light]/[Dark]
+
+[90]/[100]
 
 ### Font Awesome
 

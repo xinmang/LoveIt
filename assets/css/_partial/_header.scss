@@ -8,8 +8,11 @@ header {
   }
 
   .header-title {
-    font-size: 1.5rem;
+    font-family: $header-title-font-family;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .menu .menu-item {
@@ -47,11 +50,19 @@ header {
   .header-wrapper {
     width: auto;
     text-align: center;
-    padding: 0 3rem;
+    padding: 0 3%;
     display: flex;
     justify-content: space-between;
 
+    .header-title {
+      font-size: $header-title-font-size-desktop;
+      max-width: 30%;
+    }
+
     .menu {
+      overflow: hidden;
+      white-space: nowrap;
+
       .menu-item {
         margin: 0 .5rem;
 
@@ -92,6 +103,11 @@ header {
       padding-right: 1rem;
       padding-left: 1rem;
       box-sizing: border-box;
+
+      .header-title {
+        max-width: 80%;
+        font-size: $header-title-font-size-mobile;
+      }
 
       .menu-toggle {
         cursor: pointer;

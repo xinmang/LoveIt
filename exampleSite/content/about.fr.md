@@ -28,33 +28,34 @@ It is based on the original [LeaveIt Theme](https://github.com/liuzc/LeaveIt/) a
 
 #### Performance and SEO
 
-* :(fas fa-rocket): Optimized for **performance**: 99/100 on mobile and 100/100 on desktop in [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights)
+* :(fas fa-rocket): Optimized for **performance**: [99]/[100] on mobile and [100]/[100] on desktop in [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights)
 * :(fab fa-searchengin): Optimized SEO performance with a correct **SEO SCHEMA** based on JSON-LD
-* :(fab fa-google): [**Google Analytics**](https://analytics.google.com/analytics) support
-* :(fas fa-search): Search engine **verification** support (Google, Bind, Yandex and Baidu)
-* :(fas fa-tachometer-alt): **CDN** for third-party libraries support
+* :(fab fa-google): [**Google Analytics**](https://analytics.google.com/analytics) supported
+* :(fas fa-search): Search engine **verification** supported (Google, Bind, Yandex and Baidu)
+* :(fas fa-tachometer-alt): **CDN** for third-party libraries supported
 * :(fas fa-cloud-download-alt): Automatically converted images with **Lazy Load** by [lazysizes](https://github.com/aFarkas/lazysizes)
 
 #### Appearance and Layout
 
-* :(fas fa-desktop): / :(fas fa-mobile): **Responsive** layout
-* :(fas fa-moon): / :(fas fa-sun): **Dark/Light** mode
+* [:(fas fa-desktop):]/[:(fas fa-mobile):] **Responsive** layout
+* [:(fas fa-sun):]/[:(fas fa-moon):] **[Light]/[Dark]** mode
 * :(fas fa-layer-group): Globally consistent **design language**
-* :(fas fa-ellipsis-h): **Pagination** support
+* :(fas fa-ellipsis-h): **Pagination** supported
 * :(far fa-list-alt): Easy-to-use and self-expanding **table of contents**
-* :(fas fa-language): **Multilanguage** support and i18n ready
+* :(fas fa-language): **Multilanguage** supported and i18n ready
 * :(fab fa-css3-alt): Beautiful **CSS animation**
 
 #### Social and Comment Systems
 
 * :(far fa-user): **Gravatar** supported by [Gravatar](https://gravatar.com)
-* :(fas fa-user-circle): Local **Avatar** support
-* :(far fa-id-card): Up to **59** social sites supported
-* :(fas fa-share-square): Up to **28** share sites support
+* :(fas fa-user-circle): Local **Avatar** supported
+* :(far fa-id-card): Up to **61** social links supported
+* :(fas fa-share-square): Up to **28** share sites supported
 * :(far fa-comment): **Disqus** comment system supported by [Disqus](https://disqus.com)
 * :(far fa-comment-dots): **Gitalk** comment system supported by [Gitalk](https://github.com/gitalk/gitalk)
 * :(far fa-comment-alt): **Valine** comment system supported by [Valine](https://valine.js.org/)
 * :(far fa-comments): **Facebook comments** system supported by [Facebook](https://developers.facebook.com/docs/plugins/comments/)
+* :(fas fa-comments): **Telegram Comments** system supported by [Comments](https://comments.app/)
 
 #### Extended Features
 
@@ -62,11 +63,13 @@ It is based on the original [LeaveIt Theme](https://github.com/liuzc/LeaveIt/) a
 * :(far fa-images): **Images gallery** supported by [lightgallery.js](https://github.com/sachinchoolur/lightgallery.js)
 * :(fab fa-font-awesome): Extended markdown syntax for **[Font Awesome](https://fontawesome.com/) icons**
 * :(far fa-sticky-note): Extended markdown syntax for **ruby annotation**
+* :(fas fa-percentage): Extended markdown syntax for **fraction**
 * :(fas fa-square-root-alt): **Mathematical formula** supported by [$ \KaTeX $](https://katex.org/)
 * :(fas fa-project-diagram): **Diagrams** shortcode supported by [mermaid](https://github.com/knsv/mermaid)
 * :(fas fa-chart-pie): **Interactive data visualization** shortcode supported by [ECharts](https://echarts.apache.org/)
+* :(fas fa-map-marked-alt): **Mapbox** shortcode supported by [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js)
 * :(fas fa-music): **Music player** shortcode supported by [APlayer](https://github.com/MoePlayer/APlayer) and [MetingJS](https://github.com/metowolf/MetingJS)
-* :(fas fa-tv): **Bilibili player** shortcode
+* :(fas fa-video): **Bilibili player** shortcode
 * :(far fa-bell): Kinds of **admonitions** shortcode
 * :(fas fa-align-left): **Custom style** shortcode
 * :(fas fa-i-cursor): **Animated typing** supported by [TypeIt](https://typeitjs.com/)
@@ -91,6 +94,7 @@ Thanks to the authors of following resources included in the theme:
 * [$ \KaTeX $](https://katex.org/)
 * [mermaid](https://github.com/knsv/mermaid)
 * [ECharts](https://echarts.apache.org/)
+* [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js)
 * [APlayer](https://github.com/MoePlayer/APlayer)
 * [MetingJS](https://github.com/metowolf/MetingJS)
 * [Gitalk](https://github.com/gitalk/gitalk)

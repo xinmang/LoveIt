@@ -1,6 +1,7 @@
 ---
 weight: 1
 title: "主题文档 - 基本概念"
+subtitle: ""
 date: 2020-03-06T21:40:32+08:00
 lastmod: 2020-03-06T21:40:32+08:00
 draft: false
@@ -19,6 +20,14 @@ featuredImagePreview: ""
 toc: true
 autoCollapseToc: false
 math: false
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
 lightgallery: true
 linkToMarkdown: true
 share:
@@ -34,10 +43,14 @@ comment: true
 
 由于 Hugo 提供的便利性, [Hugo](https://gohugo.io/) 本身是这个主题唯一的依赖.
 
-直接安装满足你操作系统 (**Windows**, **Linux**, **macOS**) 的最新版本 [:(far fa-file-archive): Hugo (> 0.62.0)](https://gohugo.io/getting-started/installing/).
+直接安装满足你操作系统 (**Windows**, **Linux**, **macOS**) 的最新版本 [:(far fa-file-archive): Hugo extended (> 0.62.0)](https://gohugo.io/getting-started/installing/).
 
 {{< admonition note "为什么不支持早期版本的 Hugo?" >}}
-由于 [Markdown 渲染钩子函数](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) 在 [Hugo 圣诞节版本](https://gohugo.io/news/0.62.0-relnotes/) 中被引入, 本主题只支持高于 **v0.62.0** 的 Hugo 版本.
+由于 [Markdown 渲染钩子函数](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) 在 [Hugo 圣诞节版本](https://gohugo.io/news/0.62.0-relnotes/) 中被引入, 本主题只支持高于 **0.62.0** 的 Hugo 版本.
+{{< /admonition >}}
+
+{{< admonition note "为什么需要 Hugo extended 版本?" >}}
+由于本主题需要转换 SCSS 文件为 CSS 文件, Hugo **extended** 版本是必要的.
 {{< /admonition >}}
 
 ## 2 安装
@@ -62,14 +75,14 @@ cd my_website
 另外, 也可以直接把这个主题克隆到 `themes` 目录:
 
 ```bash
-git clone -b master https://github.com/dillonzq/LoveIt.git themes/LoveIt
+git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
 或者, 初始化你的项目目录为 git 仓库, 并且把主题仓库作为你的网站目录的子模块:
 
 ```bash
 git init
-git submodule -b master add https://github.com/dillonzq/LoveIt.git themes/LoveIt
+git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
 ### 2.3 基础配置 {#basic-configuration}
@@ -191,8 +204,8 @@ hugo
   defaultTheme = "auto"
   # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
   gitRepo = ""
-  # LoveIt :(fas fa-greater-than-equal): :(far fa-file-archive): v0.1.1
-  # 哪种哈希函数用来 SRI, 为空时表示不使用 SRI ("sha256", "sha384", "sha512", "md5")
+  # {{< version 0.1.1 new small >}} 哪种哈希函数用来 SRI, 为空时表示不使用 SRI
+  # ("sha256", "sha384", "sha512", "md5")
   fingerprint = ""
   # 页面头部导航栏信息
   [params.header]
@@ -204,10 +217,10 @@ hugo
   [params.footer]
     # 网站创立年份
     since = 2019
-    # ICP 备案信息，仅在中国使用 (允许使用 HTML 格式)
+    # ICP 备案信息，仅在中国使用 (支持 HTML 格式)
     icp = ""
-    # 许可协议信息 (允许使用 HTML 格式)
-    license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+    # 许可协议信息 (支持 HTML 格式)
+    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
   # 文章页面配置
   [params.home]
     # 主页信息设置
@@ -223,6 +236,8 @@ hugo
       typeit = true
       # 是否显示社交账号
       social = true
+      # {{< version 0.2.0 new small >}} 免责声明 (支持 HTML 格式)
+      disclaimer = ""
     # 主页文章列表
     [params.home.posts]
       enable = true
@@ -302,7 +317,7 @@ hugo
     lightgallery = true
     # 是否在文章页面显示原始 Markdown 文档链接
     linkToMarkdown = true
-  # 数学公式 (KaTeX https://katex.org/)
+  # {{< link "https://katex.org/" KaTeX >}} 数学公式
   [params.math]
     enable = true
     # 默认块定界符是 $$ ... $$ 和 \\[ ... \\]
@@ -315,6 +330,22 @@ hugo
     copyTex = true
     # KaTeX 插件 mhchem
     mhchem = true
+  # {{< version 0.2.0 new small >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" "Mapbox GL JS" >}} 配置
+  [params.mapbox]
+    # Mapbox GL JS 的 access token
+    accessToken = ""
+    # 浅色主题的地图样式
+    lightStyle = "mapbox://styles/mapbox/light-v9"
+    # 深色主题的地图样式
+    darkStyle = "mapbox://styles/mapbox/dark-v9"
+    # 是否添加 {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol" NavigationControl >}}
+    navigation = true
+    # 是否添加 {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol" GeolocateControl >}}
+    geolocate = true
+    # 是否添加 {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol" ScaleControl >}}
+    scale = true
+    # 是否添加 {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol" FullscreenControl >}}
+    fullscreen = true
   # 文章页面的分享信息设置
   [params.share]
     enable = true
@@ -348,21 +379,21 @@ hugo
   # 评论系统设置
   [params.comment]
     enable = true
-    # Disqus 评论系统设置 (https://disqus.com/)
+    # {{< link "https://disqus.com/" Disqus >}} 评论系统设置
     [params.comment.disqus]
-      # LoveIt :(fas fa-greater-than-equal): :(far fa-file-archive): v0.1.1
+      # {{< version 0.1.1 new small >}}
       enable = false
       # Disqus 的 shortname，用来在文章中启用 Disqus 评论系统
       shortname = ""
-    # Gitalk 评论系统设置 (https://github.com/gitalk/gitalk)
+    # {{< link "https://github.com/gitalk/gitalk" Gitalk >}} 评论系统设置
     [params.comment.gitalk]
-      # LoveIt :(fas fa-greater-than-equal): :(far fa-file-archive): v0.1.1
+      # {{< version 0.1.1 new small >}}
       enable = false
       owner = ""
       repo = ""
       clientId = ""
       clientSecret = ""
-    # Valine 评论系统设置 (https://github.com/xCss/Valine)
+    # {{< link "https://github.com/xCss/Valine" Valine >}} 评论系统设置
     [params.comment.valine]
       enable = false
       appId = ""
@@ -376,13 +407,23 @@ hugo
       lang = "en"
       visitor = true
       recordIP = true
-    # Facebook 评论系统设置 (https://developers.facebook.com/docs/plugins/comments)
+    # # {{< link "https://developers.facebook.com/docs/plugins/comments" "Facebook 评论系统" >}}设置
     [params.comment.facebook]
       enable = false
       width = "100%"
       numPosts = 10
       appId = ""
-      languageCode = "en_US"
+      languageCode = "zh_CN"
+    # {{< version 0.2.0 new small >}} {{< link "https://comments.app/" "Telegram Comments" >}} 评论系统设置
+    [params.comment.telegram]
+      enable = false
+      siteID = ""
+      limit = 5
+      height = ""
+      color = ""
+      colorful = true
+      dislikes = false
+      outlined = false
 
   # 网站验证代码，用于 Google/Bing/Yandex/Pinterest/Baidu
   [params.verification]
@@ -410,58 +451,60 @@ hugo
     height = 600
   # CSS 和 JS 文件的 CDN 设置
   [params.cdn]
-    # fontawesome-free@5.12.1 https://fontawesome.com/
+    # {{< link "https://fontawesome.com/" "fontawesome-free" >}}@5.12.1
     fontawesomeFreeCSS = ''
     # animate.css@3.7.2 https://github.com/daneden/animate.css
     animateCSS = ''
-    # smooth-scroll@16.1.2 https://github.com/cferdinandi/smooth-scroll
+    # {{< link "https://github.com/cferdinandi/smooth-scroll" "smooth-scroll" >}}@16.1.2
     smoothScrollJS = ''
-    # sharer@0.4.0 https://github.com/ellisonleao/sharer.js
+    # {{< link "https://github.com/ellisonleao/sharer.js" "sharer" >}}@0.4.0
     sharerJS = ''
-    # lazysizes@5.2.0 https://github.com/aFarkas/lazysizes
+    # {{< link "https://github.com/aFarkas/lazysizes" "lazysizes" >}}@5.2.0
     lazysizesJS = ''
-    # lightgallery@1.1.3 lg-thumbnail@1.1.0 lg-zoom@1.1.0 https://github.com/sachinchoolur/lightgallery.js
+    # {{< link "https://github.com/sachinchoolur/lightgallery.js" "lightgallery" >}}@1.1.3 lg-thumbnail@1.1.0 lg-zoom@1.1.0
     lightgalleryCSS = ''
     lightgalleryJS = ''
     lightgalleryThumbnailJS = ''
     lightgalleryZoomJS = ''
-    # typeit@6.5.1 https://github.com/alexmacarthur/typeit
+    # {{< link "https://github.com/alexmacarthur/typeit" "typeit" >}}@6.5.1
     typeitJS = ''
-    # katex@0.11.1 https://github.com/KaTeX/KaTeX
+    # {{< link "https://github.com/KaTeX/KaTeX" "katex" >}}@0.11.1
     katexCSS = ''
     katexJS = ''
     katexAutoRenderJS = ''
     katexCopyTexCSS = ''
     katexCopyTexJS = ''
     katexMhchemJS = ''
-    # mermaid@8.4.8 https://github.com/knsv/mermaid
+    # {{< link "https://github.com/knsv/mermaid" "mermaid" >}}@8.4.8
     mermaidJS = ''
-    # aplayer@1.10.1 https://github.com/MoePlayer/APlayer
+    # {{< link "https://github.com/MoePlayer/APlayer" "aplayer" >}}@1.10.1
     aplayerCSS = ''
     aplayerJS = ''
-    # meting@2.0.1 https://github.com/metowolf/MetingJS
+    # {{< link "https://github.com/metowolf/MetingJS" "meting" >}}@2.0.1
     metingJS = ''
-    # echarts@4.6.0 https://echarts.apache.org/
+    # {{< link "https://echarts.apache.org/" "echarts" >}}@4.6.0
     echartsJS = ''
     echartsMacaronsJS = ''
-    # gitalk@1.6.2 https://github.com/gitalk/gitalk
+    # {{< version 0.2.0 new small >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" mapbox-gl >}}@1.8.1
+    mapboxGLCSS = ''
+    mapboxGLJS = ''
+    # {{< link "https://github.com/gitalk/gitalk" "gitalk" >}}@1.6.2
     gitalkCSS = ''
     gitalkJS = ''
-    # valine@1.3.10 https://valine.js.org/
+    # {{< link "https://valine.js.org/" "valine" >}}@1.3.10
     valineJS = ''
 
 # Hugo 解析文档的配置
 [markup]
-  # 语法高亮设置 (https://gohugo.io/content-management/syntax-highlighting)
+  # {{< link "https://gohugo.io/content-management/syntax-highlighting" "语法高亮设置" >}}
   [markup.highlight]
     codeFences = true
     guessSyntax = true
-    lineNoStart = 1
     lineNos = true
-    lineNumbersInTable = true
+    lineNumbersInTable = false
+    # false 是必要的设置
+    # ({{< link "https://github.com/dillonzq/LoveIt/issues/158" >}})
     noClasses = false
-    style = "monokai"
-    tabWidth = 4
   # Goldmark 是 Hugo 0.60 以来的默认 Markdown 解析库
   [markup.goldmark]
     [markup.goldmark.extensions]
@@ -491,12 +534,12 @@ hugo
   filename = "sitemap.xml"
   priority = 0.5
 
-# Permalinks 信息 (https://gohugo.io/content-management/urls/#permalinks)
+# {{< link "https://gohugo.io/content-management/urls/#permalinks" "Permalinks 信息" >}}
 [Permalinks]
   # posts = ":year/:month/:filename"
   posts = ":filename"
 
-# 隐私信息设置 (https://gohugo.io/about/hugo-and-gdpr/)
+# {{< link "https://gohugo.io/about/hugo-and-gdpr/" "隐私信息设置" >}}
 [privacy]
   [privacy.googleAnalytics]
     anonymizeIP = true

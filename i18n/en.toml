@@ -1,6 +1,14 @@
 # Translations for English
 # https://gohugo.io/content-management/multilingual/#translation-of-strings
 
+# === baseof ==
+[backToTop]
+other = "Back to Top"
+
+[viewComments]
+other = "View Comments"
+# === baseof ==
+
 # === Post ===
 [posts]
 other = "Posts"
@@ -138,3 +146,14 @@ other = "Example"
 [quote]
 other = "Quote"
 # === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[new]
+other = "NEW"
+
+[changed]
+other = "CHANGED"
+
+[deleted]
+other = "DELETED"
+# === shortcodes/version.html ===

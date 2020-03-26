@@ -1,9 +1,17 @@
 /** Single **/
 .single {
   .single-title {
-    margin: 0.8rem 0;
+    margin: 1rem 0 .5rem;
     font-size: 1.6rem;
     line-height: 140%;
+  }
+
+  .single-subtitle {
+    margin: .4rem 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-style: italic;
+    line-height: 100%;
   }
 
   .post-meta {
@@ -18,21 +26,7 @@
       color: $global-font-secondary-color-dark;
     }
 
-    a {
-      color: $single-link-color;
-
-      .dark-theme & {
-        color: $global-link-color-dark;
-      }
-
-      &:hover {
-        color: $single-link-hover-color;
-
-        .dark-theme & {
-          color: $global-link-hover-color-dark;
-        }
-      }
-    }
+    @include link(false, true);
 
     .author {
       font-size: 1.05rem;
@@ -40,11 +34,11 @@
   }
 
   .featured-image {
-    padding-top: .6rem;
+    margin: .5rem 0;
 
     img {
       display: block;
-      max-width: 100%;
+      width: 100%;
       height: auto;
       margin: 0 auto;
       overflow: hidden;
@@ -54,6 +48,38 @@
   @import "../_partial/_single/toc";
 
   .content {
+    > h2 {
+      font-size: 1.5rem;
+
+      & code {
+        font-size: 1.25rem;
+      }
+    }
+
+    > h3 {
+      font-size: 1.375rem;
+
+      & code {
+        font-size: 1.125rem;
+      }
+    }
+
+    > h4 {
+      font-size: 1.25rem;
+
+      & code {
+        font-size: 1rem;
+      }
+    }
+
+    > h5 {
+      font-size: 1.125rem;
+    }
+
+    > h6 {
+      font-size: 1rem;
+    }
+
     h2,
     h3,
     h4,
@@ -65,8 +91,14 @@
       .dark-theme & {
         font-weight: bolder;
       }
+    }
 
-      & > .header-mark::before {
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6 {
+      > .header-mark::before {
         content: "|";
         margin-right: .3125rem;
         color: $single-link-color;
@@ -77,12 +109,11 @@
       }
     }
 
-    h2 > .header-mark::before {
+    > h2 > .header-mark::before {
       content: "#";
     }
 
     p {
-      font-size: 1rem;
       margin: .5rem 0;
     }
 
@@ -94,25 +125,23 @@
       }
     }
 
+    @include link(false, false);
+
     a {
       word-break: break-all;
       word-break: break-word;
-      color: $single-link-color;
 
-      .dark-theme &, .dark-theme & b, .dark-theme & strong {
+      .dark-theme & b, .dark-theme & strong {
         color: $single-link-color-dark;
       }
     }
 
-    a:hover {
-      color: $single-link-hover-color;
-
-      .dark-theme &, .dark-theme & b, .dark-theme & strong {
-        color: $single-link-hover-color-dark;
-      }
+    .dark-theme a:hover b, .dark-theme a:hover strong {
+      color: $single-link-hover-color-dark;
     }
 
     ul {
+      margin: .5rem 0;
       padding-left: 2rem;
       list-style-type: disc;
     }
@@ -255,12 +284,18 @@
       .dark-theme & {
         color: $global-font-secondary-color-dark;
       }
+
+      p {
+        margin: .25rem 0;
+      }
     }
 
     @import "../_partial/_single/code";
     @import "../_partial/_single/instagram";
     @import "../_partial/_single/admonition";
     @import "../_partial/_single/echarts";
+    @import "../_partial/_single/mapbox";
+    @import "../_partial/_single/music";
     @import "../_partial/_single/bilibili";
 
     hr {
@@ -304,6 +339,19 @@
         font-family: $code-font-family;
         font-weight: bold;
         word-break: break-all;
+      }
+    }
+
+    .version {
+      img {
+        min-height: 1.2rem;
+        vertical-align: sub;
+      }
+
+      &.small {
+        img {
+          min-height: 1rem;
+        }
       }
     }
   }

@@ -1,6 +1,7 @@
 ---
 weight: 1
 title: "Thème Documentation - Concepts de Base"
+subtitle: ""
 date: 2020-03-06T21:40:32+08:00
 lastmod: 2020-03-06T21:40:32+08:00
 draft: false
@@ -19,6 +20,14 @@ featuredImagePreview: ""
 toc: true
 autoCollapseToc: false
 math: false
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
 lightgallery: true
 linkToMarkdown: true
 share:
@@ -30,14 +39,23 @@ Découvrez en quoi consiste le thème Hugo - **LoveIt** et les concepts fondamen
 
 <!--more-->
 
+{{< admonition warning >}}
+Sorry, this article has not been completely translated into **French**.
+Welcome to take the time to propose a translation by [making a PR](https://github.com/dillonzq/LoveIt/pulls) to the theme!
+{{< /admonition >}}
+
 ## 1 Requirements
 
 Thanks to the simplicity of Hugo, [Hugo](https://gohugo.io/) is the only dependency of this theme.
 
-Just install latest version of [:(far fa-file-archive): Hugo (> 0.62.0)](https://gohugo.io/getting-started/installing/) for your OS (**Windows**, **Linux**, **macOS**).
+Just install latest version of [:(far fa-file-archive): Hugo extended (> 0.62.0)](https://gohugo.io/getting-started/installing/) for your OS (**Windows**, **Linux**, **macOS**).
 
 {{< admonition note "Why not support earlier versions of Hugo?" >}}
-Since [Markdown Render Hooks](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) was introduced in the [Hugo Christmas Edition](https://gohugo.io/news/0.62.0-relnotes/), this theme only supports Hugo versions above **v0.62.0**.
+Since [Markdown Render Hooks](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) was introduced in the [Hugo Christmas Edition](https://gohugo.io/news/0.62.0-relnotes/), this theme only supports Hugo versions above **0.62.0**.
+{{< /admonition >}}
+
+{{< admonition note "Why need the Hugo extended version?" >}}
+Since this theme processes SCSS to CSS, Hugo needs to be the **extended** version.
 {{< /admonition >}}
 
 ## 2 Installation
@@ -62,14 +80,14 @@ You can download the [latest release :(far fa-file-archive): .zip file](https://
 Alternatively, clone this repository to the `themes` directory:
 
 ```bash
-git clone -b master https://github.com/dillonzq/LoveIt.git themes/LoveIt
+git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
 Or, create an empty git repository and make this repository a submodule of your site directory:
 
 ```bash
 git init
-git submodule -b master add https://github.com/dillonzq/LoveIt.git themes/LoveIt
+git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
 ### 2.3 Basic Configuration {#basic-configuration}
@@ -94,7 +112,7 @@ theme = "LoveIt"
 [menu]
   [[menu.main]]
     identifier = "posts"
-    # you can add extra information before the name (HTML format is allowed), such as icons
+    # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
     name = "Posts"
     url = "/posts/"
@@ -188,8 +206,8 @@ Note that some of these parameters are explained in details in other sections of
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
   gitRepo = ""
-  # LoveIt :(fas fa-greater-than-equal): :(far fa-file-archive): v0.1.1
-  # which hash function used for SRI, when empty, no SRI is used ("sha256", "sha384", "sha512", "md5")
+  # {{< version 0.1.1 new small >}} which hash function used for SRI, when empty, no SRI is used
+  # ("sha256", "sha384", "sha512", "md5")
   fingerprint = ""
   # Header info
   [params.header]
@@ -201,10 +219,10 @@ Note that some of these parameters are explained in details in other sections of
   [params.footer]
     # Site creation time
     since = 2019
-    # ICP info only in China (HTML format is allowed)
+    # ICP info only in China (HTML format is supported)
     icp = ""
-    # license info (HTML format is allowed)
-    license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+    # license info (HTML format is supported)
+    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
   # Home Page Info
   [params.home]
     # Home Page Profile
@@ -220,6 +238,8 @@ Note that some of these parameters are explained in details in other sections of
       typeit = true
       # whether to show social links
       social = true
+      # {{< version 0.2.0 new small >}} disclaimer (HTML format is supported)
+      disclaimer = ""
     # Home Page Posts
     [params.home.posts]
       enable = true
@@ -300,7 +320,7 @@ Note that some of these parameters are explained in details in other sections of
     lightgallery = true
     # whether to show link to Raw Markdown content of the post
     linkToMarkdown = true
-  # mathematical formulas (KaTeX https://katex.org/)
+  # {{< link "https://katex.org/" KaTeX >}} mathematical formulas
   [params.math]
     enable = true
     # default block delimiter is $$ ... $$ and \\[ ... \\]
@@ -313,6 +333,22 @@ Note that some of these parameters are explained in details in other sections of
     copyTex = true
     # KaTeX extension mhchem
     mhchem = true
+  # {{< version 0.2.0 new small >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" "Mapbox GL JS" >}} config
+  [params.mapbox]
+    # access token of Mapbox GL JS
+    accessToken = ""
+    # style for the light theme
+    lightStyle = "mapbox://styles/mapbox/light-v9"
+    # style for the dark theme
+    darkStyle = "mapbox://styles/mapbox/dark-v9"
+    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol" NavigationControl >}}
+    navigation = true
+    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol" GeolocateControl >}}
+    geolocate = true
+    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol" ScaleControl >}}
+    scale = true
+    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol" FullscreenControl >}}
+    fullscreen = true
   # Social Share Links in post page
   [params.share]
     enable = true
@@ -346,21 +382,21 @@ Note that some of these parameters are explained in details in other sections of
   # Comment Config
   [params.comment]
     enable = true
-    # Disqus Comment Config (https://disqus.com/)
+    # {{< link "https://disqus.com/" Disqus >}} Comment Config
     [params.comment.disqus]
-      # LoveIt :(fas fa-greater-than-equal): :(far fa-file-archive): v0.1.1
+      # {{< version 0.1.1 new small >}}
       enable = false
       # Disqus shortname to use Disqus in posts
       shortname = ""
-    # Gitalk Comment Config (https://github.com/gitalk/gitalk)
+    # {{< link "https://github.com/gitalk/gitalk" Gitalk >}} Comment Config
     [params.comment.gitalk]
-      # LoveIt :(fas fa-greater-than-equal): :(far fa-file-archive): v0.1.1
+      # {{< version 0.1.1 new small >}}
       enable = false
       owner = ""
       repo = ""
       clientId = ""
       clientSecret = ""
-    # Valine Comment Config (https://github.com/xCss/Valine)
+    # {{< link "https://github.com/xCss/Valine" Valine >}} Comment Config
     [params.comment.valine]
       enable = false
       appId = ""
@@ -374,13 +410,23 @@ Note that some of these parameters are explained in details in other sections of
       lang = "en"
       visitor = true
       recordIP = true
-    # Facebook Comment Config (https://developers.facebook.com/docs/plugins/comments)
+    # {{< link "https://developers.facebook.com/docs/plugins/comments" "Facebook Comment" >}} Config
     [params.comment.facebook]
       enable = false
       width = "100%"
       numPosts = 10
       appId = ""
       languageCode = "en_US"
+    # {{< version 0.2.0 new small >}} {{< link "https://comments.app/" "Telegram Comments" >}} Config
+    [params.comment.telegram]
+      enable = false
+      siteID = ""
+      limit = 5
+      height = ""
+      color = ""
+      colorful = true
+      dislikes = false
+      outlined = false
 
   # site verification code for Google/Bing/Yandex/Pinterest/Baidu
   [params.verification]
@@ -408,58 +454,60 @@ Note that some of these parameters are explained in details in other sections of
     height = 600
   # CSS and JS Files CDN
   [params.cdn]
-    # fontawesome-free@5.12.1 https://fontawesome.com/
+    # {{< link "https://fontawesome.com/" "fontawesome-free" >}}@5.12.1
     fontawesomeFreeCSS = ''
     # animate.css@3.7.2 https://github.com/daneden/animate.css
     animateCSS = ''
-    # smooth-scroll@16.1.2 https://github.com/cferdinandi/smooth-scroll
+    # {{< link "https://github.com/cferdinandi/smooth-scroll" "smooth-scroll" >}}@16.1.2
     smoothScrollJS = ''
-    # sharer@0.4.0 https://github.com/ellisonleao/sharer.js
+    # {{< link "https://github.com/ellisonleao/sharer.js" "sharer" >}}@0.4.0
     sharerJS = ''
-    # lazysizes@5.2.0 https://github.com/aFarkas/lazysizes
+    # {{< link "https://github.com/aFarkas/lazysizes" "lazysizes" >}}@5.2.0
     lazysizesJS = ''
-    # lightgallery@1.1.3 lg-thumbnail@1.1.0 lg-zoom@1.1.0 https://github.com/sachinchoolur/lightgallery.js
+    # {{< link "https://github.com/sachinchoolur/lightgallery.js" "lightgallery" >}}@1.1.3 lg-thumbnail@1.1.0 lg-zoom@1.1.0
     lightgalleryCSS = ''
     lightgalleryJS = ''
     lightgalleryThumbnailJS = ''
     lightgalleryZoomJS = ''
-    # typeit@6.5.1 https://github.com/alexmacarthur/typeit
+    # {{< link "https://github.com/alexmacarthur/typeit" "typeit" >}}@6.5.1
     typeitJS = ''
-    # katex@0.11.1 https://github.com/KaTeX/KaTeX
+    # {{< link "https://github.com/KaTeX/KaTeX" "katex" >}}@0.11.1
     katexCSS = ''
     katexJS = ''
     katexAutoRenderJS = ''
     katexCopyTexCSS = ''
     katexCopyTexJS = ''
     katexMhchemJS = ''
-    # mermaid@8.4.8 https://github.com/knsv/mermaid
+    # {{< link "https://github.com/knsv/mermaid" "mermaid" >}}@8.4.8
     mermaidJS = ''
-    # aplayer@1.10.1 https://github.com/MoePlayer/APlayer
+    # {{< link "https://github.com/MoePlayer/APlayer" "aplayer" >}}@1.10.1
     aplayerCSS = ''
     aplayerJS = ''
-    # meting@2.0.1 https://github.com/metowolf/MetingJS
+    # {{< link "https://github.com/metowolf/MetingJS" "meting" >}}@2.0.1
     metingJS = ''
-    # echarts@4.6.0 https://echarts.apache.org/
+    # {{< link "https://echarts.apache.org/" "echarts" >}}@4.6.0
     echartsJS = ''
     echartsMacaronsJS = ''
-    # gitalk@1.6.2 https://github.com/gitalk/gitalk
+    # {{< version 0.2.0 new small >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" mapbox-gl >}}@1.8.1
+    mapboxGLCSS = ''
+    mapboxGLJS = ''
+    # {{< link "https://github.com/gitalk/gitalk" "gitalk" >}}@1.6.2
     gitalkCSS = ''
     gitalkJS = ''
-    # valine@1.3.10 https://valine.js.org/
+    # {{< link "https://valine.js.org/" "valine" >}}@1.3.10
     valineJS = ''
 
 # Markup related configuration in Hugo
 [markup]
-  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  # {{< link "https://gohugo.io/content-management/syntax-highlighting" "Syntax Highlighting" >}}
   [markup.highlight]
     codeFences = true
     guessSyntax = true
-    lineNoStart = 1
     lineNos = true
-    lineNumbersInTable = true
+    lineNumbersInTable = false
+    # false is a necessary configuration
+    # ({{< link "https://github.com/dillonzq/LoveIt/issues/158" >}})
     noClasses = false
-    style = "monokai"
-    tabWidth = 4
   # Goldmark is from Hugo 0.60 the default library used for Markdown
   [markup.goldmark]
     [markup.goldmark.extensions]
@@ -489,12 +537,12 @@ Note that some of these parameters are explained in details in other sections of
   filename = "sitemap.xml"
   priority = 0.5
 
-# Permalinks Info (https://gohugo.io/content-management/urls/#permalinks)
+# {{< link "https://gohugo.io/content-management/urls/#permalinks" "Permalinks Info" >}}
 [Permalinks]
   # posts = ":year/:month/:filename"
   posts = ":filename"
 
-# Privacy Info (https://gohugo.io/about/hugo-and-gdpr/)
+# {{< link "https://gohugo.io/about/hugo-and-gdpr/" "Privacy Info" >}}
 [privacy]
   [privacy.googleAnalytics]
     anonymizeIP = true

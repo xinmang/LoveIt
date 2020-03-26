@@ -1,7 +1,8 @@
 html {
   font-family: $global-font-family;
-  font-size: $global-font-size;
   font-weight: $global-font-weight;
+  font-display: swap;
+  font-size: $global-font-size;
   line-height: $global-line-height;
   width:100%;
 }
@@ -29,6 +30,7 @@ html {
 }
 
 body {
+  -webkit-font-smoothing: subpixel-antialiased;
   background-color: $global-background-color;
   color: $global-font-color;
   overflow-wrap: break-word;
@@ -59,20 +61,9 @@ body {
 }
 
 a {
-  color: $global-link-color;
   text-decoration: none;
-
-  &:hover {
-    color: $global-link-hover-color;
-  }
-
-  .dark-theme & {
-    color: $global-link-color-dark;
-
-    &:hover {
-      color: $global-link-hover-color-dark;
-    }
-  }
 }
 
-@import "../_partial/dynamic-to-top";
+@include link(true, true);
+
+@import "../_partial/fixed-button";
