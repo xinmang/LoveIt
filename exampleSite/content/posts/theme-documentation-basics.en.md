@@ -1,38 +1,21 @@
 ---
 weight: 1
 title: "Theme Documentation - Basics"
-subtitle: ""
 date: 2020-03-06T21:29:01+08:00
 lastmod: 2020-03-06T21:29:01+08:00
 draft: false
 author: "Dillon"
 authorLink: "https://dillonzq.com"
 description: "Discover what the Hugo - LoveIt theme is all about and the core-concepts behind it."
-license: ""
 
 tags: ["installation", "configuration"]
 categories: ["documentation"]
-hiddenFromHomePage: false
-
 featuredImage: "/images/theme-documentation-basics/featured-image.jpg"
-featuredImagePreview: ""
 
-toc: true
-autoCollapseToc: false
-math: false
-mapbox:
-    accessToken: ""
-    lightStyle: ""
-    darkStyle: ""
-    navigation: true
-    geolocate: true
-    scale: true
-    fullscreen: true
 lightgallery: true
-linkToMarkdown: true
-share:
-  enable: true
-comment: true
+
+toc:
+  auto: false
 ---
 
 Discover what the Hugo - **LoveIt** theme is all about and the core-concepts behind it.
@@ -43,14 +26,14 @@ Discover what the Hugo - **LoveIt** theme is all about and the core-concepts beh
 
 Thanks to the simplicity of Hugo, [Hugo](https://gohugo.io/) is the only dependency of this theme.
 
-Just install latest version of [:(far fa-file-archive): Hugo extended (> 0.62.0)](https://gohugo.io/getting-started/installing/) for your OS (**Windows**, **Linux**, **macOS**).
+Just install latest version of [:(far fa-file-archive fa-fw): Hugo extended (> 0.62.0)](https://gohugo.io/getting-started/installing/) for your OS (**Windows**, **Linux**, **macOS**).
 
 {{< admonition note "Why not support earlier versions of Hugo?" >}}
 Since [Markdown Render Hooks](https://gohugo.io/getting-started/configuration-markup/#markdown-render-hooks) was introduced in the [Hugo Christmas Edition](https://gohugo.io/news/0.62.0-relnotes/), this theme only supports Hugo versions above **0.62.0**.
 {{< /admonition >}}
 
 {{< admonition note "Why need the Hugo extended version?" >}}
-Since this theme processes SCSS to CSS, Hugo needs to be the **extended** version.
+Since the theme processes SCSS to CSS, Hugo needs to be the **extended** version.
 {{< /admonition >}}
 
 ## 2 Installation
@@ -70,7 +53,7 @@ cd my_website
 
 The **LoveIt** theme’s repository is: [https://github.com/dillonzq/LoveIt](https://github.com/dillonzq/LoveIt).
 
-You can download the [latest release :(far fa-file-archive): .zip file](https://github.com/dillonzq/LoveIt/releases) of the theme and extract it in the `themes` directory.
+You can download the [latest release :(far fa-file-archive fa-fw): .zip file](https://github.com/dillonzq/LoveIt/releases) of the theme and extract it in the `themes` directory.
 
 Alternatively, clone this repository to the `themes` directory:
 
@@ -102,13 +85,15 @@ theme = "LoveIt"
 
 [params]
   # LoveIt theme version
-  version = "0.1.X"
+  version = "0.2.X"
 
 [menu]
   [[menu.main]]
     identifier = "posts"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
     name = "Posts"
     url = "/posts/"
     # title will be shown when you hover on this menu link
@@ -117,6 +102,7 @@ theme = "LoveIt"
   [[menu.main]]
     identifier = "tags"
     pre = ""
+    post = ""
     name = "Tags"
     url = "/tags/"
     title = ""
@@ -124,6 +110,7 @@ theme = "LoveIt"
   [[menu.main]]
     identifier = "categories"
     pre = ""
+    post = ""
     name = "Categories"
     url = "/categories/"
     title = ""
@@ -145,7 +132,7 @@ hugo new posts/first_post.md
 Feel free to edit the post file by adding some sample content and replacing the title value in the beginning of the file.
 
 {{< admonition >}}
-By default all posts and pages are created as a draft. If you want to render these pages, remove the property `draft: true` from the metadata or set the property `draft: false`.
+By default all posts and pages are created as a draft. If you want to render these pages, remove the property `draft: true` from the metadata, set the property `draft: false` or add `-D`/`--buildDrafts` parameter to `hugo` command.
 {{< /admonition >}}
 
 ### 2.5 Launching the Website Locally
@@ -162,6 +149,15 @@ Go to `http://localhost:1313`.
 
 {{< admonition tip >}}
 When you run `hugo serve`, when the contents of the files change, the page automatically refreshes with the changes.
+{{< /admonition >}}
+
+{{< admonition >}}
+Since the theme use `.Scratch` in Hugo to implement some features,
+it is highly recommended that you add `--disableFastRender` parameter to `hugo server` command for the live preview of the page you are editing.
+
+```bash
+hugo serve --disableFastRender
+```
 {{< /admonition >}}
 
 ### 2.6 Build the Website
@@ -191,8 +187,8 @@ Note that some of these parameters are explained in details in other sections of
 
 ```toml
 [params]
-  # LoveIt theme version
-  version = "0.1.X"
+  # {{< version 0.2.0 changed >}} LoveIt theme version
+  version = "0.2.X"
   # site description
   description = "This is My New Hugo Site"
   # site keywords
@@ -201,26 +197,74 @@ Note that some of these parameters are explained in details in other sections of
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
   gitRepo = ""
-  # {{< version 0.1.1 new small >}} which hash function used for SRI, when empty, no SRI is used
+  # {{< version 0.1.1 >}} which hash function used for SRI, when empty, no SRI is used
   # ("sha256", "sha384", "sha512", "md5")
   fingerprint = ""
-  # Header info
+  # {{< version 0.2.0 >}} date format
+  dateFormat = "2006-01-02"
+
+  # {{< version 0.2.0 >}} Search config
+  [params.search]
+    enable = true
+    # type of search engine ("lunr", "algolia")
+    type = "lunr"
+    # index length of the content
+    contentLength = 5000
+    # placeholder of the search bar
+    placeholder = ""
+    [params.search.algolia]
+      index = ""
+      appID = ""
+      searchKey = ""
+
+  # Header config
   [params.header]
     # desktop header mode ("fixed", "normal", "auto")
     desktopMode = "fixed"
     # mobile header mode ("fixed", "normal", "auto")
     mobileMode = "auto"
-  # Footer Copyright Info
+
+  # Footer config
   [params.footer]
+    enable = true
+    # {{< version 0.2.0 >}} Custom content (HTML format is supported)
+    custom = ''
+    # {{< version 0.2.0 >}} whether to show Hugo and theme info
+    hugo = true
+    # {{< version 0.2.0 >}} whether to show copyright info
+    copyright = true
+    # {{< version 0.2.0 >}} whether to show the author
+    author = true
     # Site creation time
     since = 2019
     # ICP info only in China (HTML format is supported)
     icp = ""
     # license info (HTML format is supported)
     license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
-  # Home Page Info
+
+  # {{< version 0.2.0 >}} Section (all posts) page config
+  [params.section]
+    # special amount of posts in each section page
+    paginate = 20
+    # date format (month and day)
+    dateFormat = "01-02"
+    # amount of RSS pages
+    rss = 10
+
+  # {{< version 0.2.0 >}} List (category or tag) page config
+  [params.list]
+    # special amount of posts in each list page
+    paginate = 20
+    # date format (month and day)
+    dateFormat = "01-02"
+    # amount of RSS pages
+    rss = 10
+
+  # Home page config
   [params.home]
-    # Home Page Profile
+    # {{< version 0.2.0 >}} amount of RSS pages
+    rss = 10
+    # Home page profile
     [params.home.profile]
       enable = true
       # Gravatar Email for preferred avatar in home page
@@ -233,238 +277,294 @@ Note that some of these parameters are explained in details in other sections of
       typeit = true
       # whether to show social links
       social = true
-      # {{< version 0.2.0 new small >}} disclaimer (HTML format is supported)
+      # {{< version 0.2.0 >}} disclaimer (HTML format is supported)
       disclaimer = ""
-    # Home Page Posts
+    # Home page posts
     [params.home.posts]
       enable = true
       # special amount of posts in each home posts page
       paginate = 6
-      # default behavior when you don't set "hiddenFromHomePage" in front matter
+      # {{< version 0.2.0 deleted >}} default behavior when you don't set "hiddenFromHomePage" in front matter
       defaultHiddenFromHomePage = false
-  # Social Info in home page
+
+  # Social config about the author
   [params.social]
     GitHub = "xxxx"
-    Linkedin = "xxxx"
+    Linkedin = ""
     Twitter = "xxxx"
     Instagram = "xxxx"
-    Email = "xxxx@xxxx.com"
     Facebook = "xxxx"
     Telegram = "xxxx"
-    # Medium = "xxxx"
-    # Gitlab = "xxxx"
-    Youtubelegacy = "xxxx"
-    # Youtubecustom = "xxxx"
-    # Youtubechannel = "xxxx"
-    # Tumblr ="xxxx"
-    # Quora = "xxxx"
-    # Keybase = "xxxx"
-    # Pinterest = "xxxx"
-    # Reddit = "xxxx"
-    # Codepen = "xxxx"
-    # FreeCodeCamp = "xxxx"
-    # Bitbucket = "xxxx"
-    # Stackoverflow = "xxxx"
-    # Weibo = "xxxx"
-    # Odnoklassniki = "xxxx"
-    # VK = "xxxx"
-    # Flickr = "xxxx"
-    # Xing = "xxxx"
-    # Snapchat = "xxxx"
-    # Soundcloud = "xxxx"
-    # Spotify = "xxxx"
-    # Bandcamp = "xxxx"
-    # Paypal = "xxxx"
-    # Fivehundredpx = "xxxx"
-    # Mix = "xxxx"
-    # Goodreads = "xxxx"
-    # Lastfm = "xxxx"
-    # Foursquare = "xxxx"
-    # Hackernews = "xxxx"
-    # Kickstarter = "xxxx"
-    # Patreon = "xxxx"
-    # Steam = "xxxx"
-    # Twitch = "xxxx"
-    # Strava = "xxxx"
-    # Skype = "xxxx"
-    # Whatsapp = "xxxx"
-    # Zhihu = "xxxx"
-    # Douban = "xxxx"
-    # Angellist = "xxxx"
-    # Slidershare = "xxxx"
-    # Jsfiddle = "xxxx"
-    # Deviantart = "xxxx"
-    # Behance = "xxxx"
-    # Dribble = "xxxx"
-    # Wordpress = "xxxx"
-    # Vine = "xxxx"
-    # Googlescholar = "xxxx"
-    # Researchgate = "xxxx"
-    # Mastodon = "xxxx"
-    # MastodonPrefix = "https://mastodon.technology/"
-    # Thingiverse = "xxxx"
-    # Devto = "xxxx"
-    # Gitea = "xxxx"
-    # XMPP = "xxxx"
-    # Matrix = "xxxx"
-    # Bilibili = "xxxx"
+    Medium = ""
+    Gitlab = ""
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    Mastodon = ""
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = ""
+    Bilibili = ""
+    Email = "xxxx@xxxx.com"
+    RSS = true # {{< version 0.2.0 >}}
 
-  # Page config
+  # {{< version 0.2.0 changed >}} Page config
   [params.page]
-    # whether to use lightgallery in the page
-    lightgallery = true
-    # whether to show link to Raw Markdown content of the post
+    # {{< version 0.2.0 >}} whether to hide a page from home page
+    hiddenFromHomePage = false
+    # {{< version 0.2.0 >}} whether to hide a page from search results
+    hiddenFromSearch = false
+    # whether to enable lightgallery
+    lightgallery = false
+    # {{< version 0.2.0 >}} whether to enable the ruby extended syntax
+    ruby = true
+    # {{< version 0.2.0 >}} whether to enable the fraction extended syntax
+    fraction = true
+    # {{< version 0.2.0 >}} whether to enable the fontawesome extended syntax
+    fontawesome = true
+    # whether to show link to Raw Markdown content of the content
     linkToMarkdown = true
-  # {{< link "https://katex.org/" KaTeX >}} mathematical formulas
-  [params.math]
-    enable = true
-    # default block delimiter is $$ ... $$ and \\[ ... \\]
-    blockLeftDelimiter = ""
-    blockRightDelimiter = ""
-    # default inline delimiter is $ ... $ and \\( ... \\)
-    inlineLeftDelimiter = ""
-    inlineRightDelimiter = ""
-    # KaTeX extension copy_tex
-    copyTex = true
-    # KaTeX extension mhchem
-    mhchem = true
-  # {{< version 0.2.0 new small >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" "Mapbox GL JS" >}} config
-  [params.mapbox]
-    # access token of Mapbox GL JS
-    accessToken = ""
-    # style for the light theme
-    lightStyle = "mapbox://styles/mapbox/light-v9"
-    # style for the dark theme
-    darkStyle = "mapbox://styles/mapbox/dark-v9"
-    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol" NavigationControl >}}
-    navigation = true
-    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol" GeolocateControl >}}
-    geolocate = true
-    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol" ScaleControl >}}
-    scale = true
-    # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol" FullscreenControl >}}
-    fullscreen = true
-  # Social Share Links in post page
-  [params.share]
-    enable = true
-    Twitter = true
-    Facebook = true
-    Linkedin = true
-    Whatsapp = true
-    Pinterest = true
-    # Tumblr = true
-    HackerNews = true
-    # Reddit = true
-    # VK = true
-    # Buffer = true
-    # Xing = true
-    # Line = true
-    # Instapaper = true
-    # Pocket = true
-    # Digg = true
-    # Stumbleupon = true
-    # Flipboard = true
-    # Weibo = true
-    # Renren = true
-    # Myspace = true
-    # Blogger = true
-    # Baidu = true
-    # Odnoklassniki = true
-    # Evernote = true
-    # Skype = true
-    # Trello = true
-    # Mix = true
-  # Comment Config
-  [params.comment]
-    enable = true
-    # {{< link "https://disqus.com/" Disqus >}} Comment Config
-    [params.comment.disqus]
-      # {{< version 0.1.1 new small >}}
-      enable = false
-      # Disqus shortname to use Disqus in posts
-      shortname = ""
-    # {{< link "https://github.com/gitalk/gitalk" Gitalk >}} Comment Config
-    [params.comment.gitalk]
-      # {{< version 0.1.1 new small >}}
-      enable = false
-      owner = ""
-      repo = ""
-      clientId = ""
-      clientSecret = ""
-    # {{< link "https://github.com/xCss/Valine" Valine >}} Comment Config
-    [params.comment.valine]
-      enable = false
-      appId = ""
-      appKey = ""
-      placeholder = "Your comment ..."
-      notify = false
-      verify = true
-      avatar = "mp"
-      meta= ""
-      pageSize = 10
-      lang = "en"
-      visitor = true
-      recordIP = true
-    # {{< link "https://developers.facebook.com/docs/plugins/comments" "Facebook Comment" >}} Config
-    [params.comment.facebook]
-      enable = false
-      width = "100%"
-      numPosts = 10
-      appId = ""
-      languageCode = "en_US"
-    # {{< version 0.2.0 new small >}} {{< link "https://comments.app/" "Telegram Comments" >}} Config
-    [params.comment.telegram]
-      enable = false
-      siteID = ""
-      limit = 5
-      height = ""
-      color = ""
-      colorful = true
-      dislikes = false
-      outlined = false
+    # {{< version 0.2.0 >}} Table of the contents config
+    [params.page.toc]
+      # whether to enable the table of the contents
+      enable = true
+      # whether to make the table of the contents automatically collapsed
+      auto = true
+    # {{< version 0.2.0 changed >}} {{< link "https://katex.org/" KaTeX >}} mathematical formulas
+    [params.page.math]
+      enable = true
+      # default block delimiter is $$ ... $$ and \\[ ... \\]
+      blockLeftDelimiter = ""
+      blockRightDelimiter = ""
+      # default inline delimiter is $ ... $ and \\( ... \\)
+      inlineLeftDelimiter = ""
+      inlineRightDelimiter = ""
+      # KaTeX extension copy_tex
+      copyTex = true
+      # KaTeX extension mhchem
+      mhchem = true
+    # {{< version 0.2.0 >}} Code config
+    [params.page.code]
+      # whether to show the copy button of the code block
+      copy = true
+      # the maximum number of lines of displayed code by default
+      maxShownLines = 10
+    # {{< version 0.2.0 >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" "Mapbox GL JS" >}} config
+    [params.page.mapbox]
+      # access token of Mapbox GL JS
+      accessToken = ""
+      # style for the light theme
+      lightStyle = "mapbox://styles/mapbox/light-v9"
+      # style for the dark theme
+      darkStyle = "mapbox://styles/mapbox/dark-v9"
+      # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol" NavigationControl >}}
+      navigation = true
+      # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol" GeolocateControl >}}
+      geolocate = true
+      # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol" ScaleControl >}}
+      scale = true
+      # whether to add {{< link "https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol" FullscreenControl >}}
+      fullscreen = true
+    # {{< version 0.2.0 changed >}} social share links in post page
+    [params.page.share]
+      enable = true
+      Twitter = true
+      Facebook = true
+      Linkedin = true
+      Whatsapp = true
+      Pinterest = true
+      # Tumblr = true
+      HackerNews = true
+      # Reddit = true
+      # VK = true
+      # Buffer = true
+      # Xing = true
+      # Line = true
+      # Instapaper = true
+      # Pocket = true
+      # Digg = true
+      # Stumbleupon = true
+      # Flipboard = true
+      # Weibo = true
+      # Renren = true
+      # Myspace = true
+      # Blogger = true
+      # Baidu = true
+      # Odnoklassniki = true
+      # Evernote = true
+      # Skype = true
+      # Trello = true
+      # Mix = true
+    # {{< version 0.2.0 changed >}} Comment config
+    [params.page.comment]
+      enable = true
+      # {{< link "https://disqus.com/" Disqus >}} comment config
+      [params.page.comment.disqus]
+        # {{< version 0.1.1 >}}
+        enable = false
+        # Disqus shortname to use Disqus in posts
+        shortname = ""
+      # {{< link "https://github.com/gitalk/gitalk" Gitalk >}} comment config
+      [params.page.comment.gitalk]
+        # {{< version 0.1.1 >}}
+        enable = false
+        owner = ""
+        repo = ""
+        clientId = ""
+        clientSecret = ""
+      # {{< link "https://github.com/xCss/Valine" Valine >}} comment config
+      [params.page.comment.valine]
+        enable = false
+        appId = ""
+        appKey = ""
+        placeholder = ""
+        avatar = "mp"
+        meta= ""
+        pageSize = 10
+        lang = ""
+        visitor = true
+        recordIP = true
+      # {{< link "https://developers.facebook.com/docs/plugins/comments" "Facebook comment" >}} config
+      [params.page.comment.facebook]
+        enable = false
+        width = "100%"
+        numPosts = 10
+        appId = ""
+        languageCode = ""
+      # {{< version 0.2.0 >}} {{< link "https://comments.app/" "Telegram comments" >}} config
+      [params.page.comment.telegram]
+        enable = false
+        siteID = ""
+        limit = 5
+        height = ""
+        color = ""
+        colorful = true
+        dislikes = false
+        outlined = false
+      # {{< version 0.2.0 >}} {{< link "https://commento.io/" "Commento" >}} comment config
+      [params.page.comment.commento]
+        enable = false
+    # {{< version 0.2.0 >}} SEO config
+    [params.page.seo]
+      # Publisher info
+      [params.page.seo.publisher]
+        name = "xxxx"
+        [params.page.seo.publisher.logo]
+          url = "logo.png"
+          width = 127
+          height = 40
+      # Logo info
+      [params.page.seo.logo]
+        url = "logo.png"
+        width = 127
+        height = 40
+      # Image info
+      [params.page.seo.image]
+        url = "cover.png"
+        width = 800
+        height = 600
 
-  # site verification code for Google/Bing/Yandex/Pinterest/Baidu
+  # Site verification code config for Google/Bing/Yandex/Pinterest/Baidu
   [params.verification]
     google = ""
     bing = ""
     yandex = ""
     pinterest = ""
     baidu = ""
-  # Publisher Info just for SEO
-  [params.publisher]
-    name = "xxxx"
-    [params.publisher.logo]
-      url = "logo.png"
-      width = 127
-      height = 40
-  # Website Log Info just for SEO
-  [params.logo]
-    url = "logo.png"
-    width = 127
-    height = 40
-  # Website Image Info just for SEO
-  [params.image]
-    url = "cover.png"
-    width = 800
-    height = 600
-  # CSS and JS Files CDN
+
+  # {{< version 0.2.0 >}} Analytics config
+  [params.analytics]
+    enable = false
+    # Google Analytics
+    [params.analytics.google]
+      id = ""
+      # whether to anonymize IP
+      anonymizeIP = true
+      # whether to use cookie
+      cookie = false
+    # Fathom Analytics
+    [params.analytics.fathom]
+      id = ""
+      # server url for your tracker if you're self hosting
+      server = ""
+
+  # CSS and JS Files CDN config
   [params.cdn]
-    # {{< link "https://fontawesome.com/" "fontawesome-free" >}}@5.12.1
+    # {{< version 0.2.0 >}} {{< link "https://github.com/necolas/normalize.css" "normalize.css" >}}@8.0.1
+    normalizeCSS = ''
+    # {{< link "https://fontawesome.com/" "fontawesome-free" >}}@5.13.0
     fontawesomeFreeCSS = ''
+    # {{< version 0.2.0 >}} {{< link "https://github.com/simple-icons/simple-icons" "simple-icons" >}}@2.9.0
+    # ('https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/')
+    simpleIconsPrefix = 'https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/'
     # animate.css@3.7.2 https://github.com/daneden/animate.css
     animateCSS = ''
-    # {{< link "https://github.com/cferdinandi/smooth-scroll" "smooth-scroll" >}}@16.1.2
+    # {{< link "https://github.com/cferdinandi/smooth-scroll" "smooth-scroll" >}}@16.1.3
     smoothScrollJS = ''
-    # {{< link "https://github.com/ellisonleao/sharer.js" "sharer" >}}@0.4.0
-    sharerJS = ''
+    # {{< version 0.2.0 >}} {{< link "https://github.com/algolia/autocomplete.js" "autocomplete.js" >}}@0.37.1
+    autocompleteJS = ''
+    # {{< version 0.2.0 >}} {{< link "https://lunrjs.com/" "lunr.js" >}}@2.3.8
+    lunrJS = ''
+    # {{< version 0.2.0 >}} {{< link "https://github.com/algolia/algoliasearch-client-javascript" "algoliasearch" >}}@4.2.0
+    algoliasearchJS = ''
     # {{< link "https://github.com/aFarkas/lazysizes" "lazysizes" >}}@5.2.0
     lazysizesJS = ''
-    # {{< link "https://github.com/sachinchoolur/lightgallery.js" "lightgallery" >}}@1.1.3 lg-thumbnail@1.1.0 lg-zoom@1.1.0
+    # {{< link "https://github.com/sachinchoolur/lightgallery.js" "lightgallery.js" >}}@1.1.3 lg-thumbnail@1.1.0 lg-zoom@1.1.0
     lightgalleryCSS = ''
     lightgalleryJS = ''
     lightgalleryThumbnailJS = ''
     lightgalleryZoomJS = ''
-    # {{< link "https://github.com/alexmacarthur/typeit" "typeit" >}}@6.5.1
+    # {{< version 0.2.0 >}} {{< link "https://github.com/zenorocha/clipboard.js" "clipboard.js" >}}@2.0.6
+    clipboardJS = ''
+    # {{< link "https://github.com/ellisonleao/sharer.js" "sharer.js" >}}@0.4.0
+    sharerJS = ''
+    # {{< link "https://github.com/alexmacarthur/typeit" "typeit" >}}@7.0.3
     typeitJS = ''
     # {{< link "https://github.com/KaTeX/KaTeX" "katex" >}}@0.11.1
     katexCSS = ''
@@ -473,33 +573,33 @@ Note that some of these parameters are explained in details in other sections of
     katexCopyTexCSS = ''
     katexCopyTexJS = ''
     katexMhchemJS = ''
-    # {{< link "https://github.com/knsv/mermaid" "mermaid" >}}@8.4.8
+    # {{< link "https://github.com/knsv/mermaid" "mermaid" >}}@8.5.0
     mermaidJS = ''
+    # {{< link "https://echarts.apache.org/" "echarts" >}}@4.7.0
+    echartsJS = ''
+    echartsMacaronsJS = ''
+    # {{< version 0.2.0 >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" mapbox-gl >}}@1.9.1
+    mapboxGLCSS = ''
+    mapboxGLJS = ''
     # {{< link "https://github.com/MoePlayer/APlayer" "aplayer" >}}@1.10.1
     aplayerCSS = ''
     aplayerJS = ''
     # {{< link "https://github.com/metowolf/MetingJS" "meting" >}}@2.0.1
     metingJS = ''
-    # {{< link "https://echarts.apache.org/" "echarts" >}}@4.6.0
-    echartsJS = ''
-    echartsMacaronsJS = ''
-    # {{< version 0.2.0 new small >}} {{< link "https://docs.mapbox.com/mapbox-gl-js" mapbox-gl >}}@1.8.1
-    mapboxGLCSS = ''
-    mapboxGLJS = ''
     # {{< link "https://github.com/gitalk/gitalk" "gitalk" >}}@1.6.2
     gitalkCSS = ''
     gitalkJS = ''
-    # {{< link "https://valine.js.org/" "valine" >}}@1.3.10
+    # {{< link "https://valine.js.org/" "valine" >}}@1.4.9
     valineJS = ''
 
-# Markup related configuration in Hugo
+# Markup related config in Hugo
 [markup]
   # {{< link "https://gohugo.io/content-management/syntax-highlighting" "Syntax Highlighting" >}}
   [markup.highlight]
     codeFences = true
     guessSyntax = true
     lineNos = true
-    lineNumbersInTable = false
+    lineNumbersInTable = true
     # false is a necessary configuration
     # ({{< link "https://github.com/dillonzq/LoveIt/issues/158" >}})
     noClasses = false
@@ -521,27 +621,30 @@ Note that some of these parameters are explained in details in other sections of
     startLevel = 2
     endLevel = 6
 
-# Author Info
+# Author config
 [author]
   name = "xxxx"
+  email = ""
   link = ""
 
-# Sitemap Info
+# Sitemap config
 [sitemap]
   changefreq = "weekly"
   filename = "sitemap.xml"
   priority = 0.5
 
-# {{< link "https://gohugo.io/content-management/urls/#permalinks" "Permalinks Info" >}}
+# {{< link "https://gohugo.io/content-management/urls/#permalinks" "Permalinks config" >}}
 [Permalinks]
   # posts = ":year/:month/:filename"
   posts = ":filename"
 
-# {{< link "https://gohugo.io/about/hugo-and-gdpr/" "Privacy Info" >}}
+# {{< link "https://gohugo.io/about/hugo-and-gdpr/" "Privacy config" >}}
 [privacy]
+  # {{< version 0.2.0 deleted >}} privacy of the Google Analytics (replaced by params.analytics.google)
   [privacy.googleAnalytics]
-    anonymizeIP = true
-
+    # ...
+  [privacy.twitter]
+    enableDNT = true
   [privacy.youtube]
     privacyEnhanced = true
 
@@ -558,12 +661,54 @@ Note that some of these parameters are explained in details in other sections of
 
 # Options to make hugo output files
 [outputs]
-  home = ["HTML", "RSS"]
+  # {{< version 0.2.0 changed >}}
+  home = ["HTML", "RSS", "JSON"]
   page = ["HTML", "MarkDown"]
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML"]
 ```
+
+{{< admonition tip "Tips about CDN Configuration" >}}
+Full HTML tags or URLs are supported for CDN configuration:
+
+```toml
+smoothScrollJS = '<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js" integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY=" crossorigin="anonymous"></script>'
+# Or
+smoothScrollJS = 'https://cdn.jsdelivr.net/npm/smooth-scroll@16/dist/smooth-scroll.min.js'
+```
+{{< /admonition >}}
+
+{{< admonition tip "Tips about social Configuration" >}}
+{{< version 0.2.0 >}}
+
+You can directly set your ID to get a default social link and its icon:
+
+```toml
+[params.social]
+  Mastodon = "@xxxx"
+```
+
+The social link generated is `https://mastodon.technology/@xxxx`.
+
+Or You can set more options through a dict:
+
+```toml
+[params.social]
+  [params.social.Mastodon]
+    # weight when arranging icons (the greater the weight, the later the icon is positioned)
+    weight = 0
+    # your social ID
+    id = "@xxxx"
+    # prefix of your social link
+    prefix = "https://mastodon.social/"
+    # content hovering on the icon
+    title = "Mastodon"
+```
+
+The default configuration of all supported social links is located in `themes/LoveIt/assets/data/social.yaml`,
+which is you can refer to.
+{{< /admonition >}}
 
 ![Complete configuration preview](/images/theme-documentation-basics/complete-configuration-preview.png "Complete configuration preview")
 
@@ -605,23 +750,29 @@ In `config/css/_custom.scss`, you can add some css style code to customize the s
 
 ## 4 Multilingual and i18n
 
-**LoveIt** theme is fully compatible with Hugo multilingual mode.
-
-It provides:
-
-* Translation strings for default values (**English**, **Chinese** and **French**). **Feel free to contribute!**
-* In-browser language switching
+**LoveIt** theme is fully compatible with Hugo multilingual mode, which provides in-browser language switching.
 
 ![Language Switch](/images/theme-documentation-basics/language-switch.gif "Language Switch")
 
-### 4.1 Basic Configuration
+### 4.1 Compatibility {#language-compatibility}
+
+| Language           | Hugo Code | HTML `lang` Attribute | Theme Docs              | Lunr.js Support         |
+|:------------------ |:---------:|:---------------------:|:-----------------------:|:-----------------------:|
+| English            | `en`      | `en`                  | :(far fa-check-square fa-fw): | :(far fa-check-square fa-fw): |
+| Simplified Chinese | `zh-cn`   | `zh-CN`               | :(far fa-check-square fa-fw): | :(far fa-check-square fa-fw): |
+| French             | `fr`      | `fr`                  | :(far fa-square fa-fw):       | :(far fa-check-square fa-fw): |
+| Polish             | `pl`      | `pl`                  | :(far fa-square fa-fw):       | :(far fa-square fa-fw):       |
+
+:(far fa-kiss-wink-heart fa-fw): **Feel free to [contribute](https://github.com/dillonzq/LoveIt/pulls)!**
+
+### 4.2 Basic Configuration
 
 After learning [how Hugo handle multilingual websites](https://gohugo.io/content-management/multilingual), define your languages in your [site configuration](#site-configuration).
 
 For example with English, Chinese and French website:
 
 ```toml
-# [en, zh-cn, fr, ...] determines default content language
+# [en, zh-cn, fr, pl, ...] determines default content language
 defaultContentLanguage = "en"
 
 [languages]
@@ -633,6 +784,7 @@ defaultContentLanguage = "en"
     [[languages.en.menu.main]]
       identifier = "posts"
       pre = ""
+      post = ""
       name = "Posts"
       url = "/posts/"
       title = ""
@@ -640,6 +792,7 @@ defaultContentLanguage = "en"
     [[languages.en.menu.main]]
       identifier = "tags"
       pre = ""
+      post = ""
       name = "Tags"
       url = "/tags/"
       title = ""
@@ -647,6 +800,7 @@ defaultContentLanguage = "en"
     [[languages.en.menu.main]]
       identifier = "categories"
       pre = ""
+      post = ""
       name = "Categories"
       url = "/categories/"
       title = ""
@@ -663,6 +817,7 @@ defaultContentLanguage = "en"
     [[languages.zh-cn.menu.main]]
       identifier = "posts"
       pre = ""
+      post = ""
       name = "文章"
       url = "/posts/"
       title = ""
@@ -670,6 +825,7 @@ defaultContentLanguage = "en"
     [[languages.zh-cn.menu.main]]
       identifier = "tags"
       pre = ""
+      post = ""
       name = "标签"
       url = "/tags/"
       title = ""
@@ -677,6 +833,7 @@ defaultContentLanguage = "en"
     [[languages.zh-cn.menu.main]]
       identifier = "categories"
       pre = ""
+      post = ""
       name = "分类"
       url = "/categories/"
       title = ""
@@ -690,6 +847,7 @@ defaultContentLanguage = "en"
     [[languages.fr.menu.main]]
       identifier = "posts"
       pre = ""
+      post = ""
       name = "Postes"
       url = "/posts/"
       title = ""
@@ -697,6 +855,7 @@ defaultContentLanguage = "en"
     [[languages.fr.menu.main]]
       identifier = "tags"
       pre = ""
+      post = ""
       name = "Balises"
       url = "/tags/"
       title = ""
@@ -705,6 +864,7 @@ defaultContentLanguage = "en"
       identifier = "categories"
       name = "Catégories"
       pre = ""
+      post = ""
       url = "/categories/"
       title = ""
       weight = 3
@@ -726,10 +886,57 @@ Be aware that only translated pages are displayed in menu. It’s not replaced w
 Use [Front Matter parameter](https://gohugo.io/content-management/multilingual/#translate-your-content) to translate urls too.
 {{< /admonition >}}
 
-### 4.2 Overwrite Translation Strings
+### 4.3 Overwrite Translation Strings
 
-Translations strings are used for common default values used in the theme. Translations are available in **English**, **Chinese** and **French**, but you may use another language or want to override default values.
+Translations strings are used for common default values used in the theme. Translations are available in [some languages](#language-compatibility), but you may use another language or want to override default values.
 
 To override these values, create a new file in your local i18n folder `i18n/<languageCode>.toml` and inspire yourself from `themes/LoveIt/i18n/en.toml`.
 
 By the way, as these translations could be used by other people, please take the time to propose a translation by [making a PR](https://github.com/dillonzq/LoveIt/pulls) to the theme!
+
+## 5 Search
+
+{{< version 0.2.0 >}}
+
+Based on [Lunr.js](https://lunrjs.com/) or [algolia](https://www.algolia.com/), searching is supported in **LoveIt** theme.
+
+### 5.1 Output Configuration
+
+In order to generate `index.json` for searching, add `JSON` output file type to the `home` of the `outputs` part in your [site configuration](#site-configuration).
+
+```toml
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+```
+
+### 5.2 Search Configuration
+
+Based on `index.json` generated by Hugo, you could activate searching.
+
+Here is the search configuration in your [site configuration](#site-configuration):
+
+```toml
+[params.search]
+  enable = true
+  # type of search engine ("lunr", "algolia")
+  type = "lunr"
+  # index length of the content
+  contentLength = 5000
+  [params.search.algolia]
+    index = ""
+    appID = ""
+    searchKey = ""
+```
+
+{{< admonition note "How to choose the type of search engine?" >}}
+* `lunr`: simple, no need to synchronize `index.json`, no limit for `contentLength`,
+  but high bandwidth and low performance (Especially for Chinese which needs a large segmentit library)
+* `algolia`: high performance and low bandwidth, but need to synchronize `index.json` and limit for `contentLength`
+{{< /admonition >}}
+
+{{< admonition tip "Tips about algolia" >}}
+You need to upload `index.json` files to algolia to activate searching.
+You could upload the `index.json` files by browsers but a script may be a better choice.
+To be compatible with Hugo multilingual mode,
+you need to upload different `index.json` for each language to the different index of algolia, such as `zh-cn/index.json` or `fr/index.json`...
+{{< /admonition >}}

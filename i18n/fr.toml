@@ -52,6 +52,43 @@ other = "Propulsé par %s"
 other = "Thème"
 # === partials/footer.html ===
 
+# === partials/comment.html ===
+[valineLang]
+other = "en"
+
+[valinePlaceholder]
+other = "Votre commentaire ..."
+
+[facebookLanguageCode]
+other = "fr"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[search]
+other = "Chercher"
+
+[searchPlaceholder]
+other = "Rechercher des titres, des contenus..."
+
+[clear]
+other = "Clair"
+
+[cancel]
+other = "Annuler"
+
+[noResultsFound]
+other = "Aucun résultat trouvé"
+
+[lunrLanguageLib]
+other = "lib/lunr/lunr.fr.js"
+
+[lunrLanguageCode]
+other = "fr"
+
+[copyToClipboard]
+other = "Copier dans le presse-papiers"
+# === partials/assets.html ===
+
 # === partials/plugin/share.html ===
 [shareOn]
 other = "Partager sur"

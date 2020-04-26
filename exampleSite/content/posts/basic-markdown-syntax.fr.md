@@ -1,38 +1,18 @@
 ---
 weight: 4
 title: "Syntaxe de Markdown de Base"
-subtitle: ""
 date: 2019-12-01T21:57:40+08:00
 lastmod: 2020-01-01T16:45:40+08:00
 draft: false
 author: "Dillon"
 authorLink: "https://dillonzq.com"
 description: "Cet article présente la syntaxe et le format de base de Markdown."
-license: ""
 
-tags: ["markdown"]
-categories: ["markdown"]
-hiddenFromHomePage: false
-
+tags: ["Markdown"]
+categories: ["Markdown"]
 featuredImage: "/images/basic-markdown-syntax/featured-image.png"
-featuredImagePreview: ""
 
-toc: true
-autoCollapseToc: true
-math: false
-mapbox:
-    accessToken: ""
-    lightStyle: ""
-    darkStyle: ""
-    navigation: true
-    geolocate: true
-    scale: true
-    fullscreen: true
 lightgallery: true
-linkToMarkdown: true
-share:
-  enable: true
-comment: true
 ---
 
 Cet article propose un exemple de syntaxe Markdown de base qui peut être utilisée dans les fichiers de contenu Hugo.
@@ -71,12 +51,12 @@ John Gruber, the author of Markdown, puts it like this:
 > While Markdown’s syntax has been influenced by several existing text-to-HTML filters,
 > the single biggest source of inspiration for Markdown’s syntax is the format of plain text email.
 >
-> -- _John Gruber_
+> {{< style "text-align: right;" >}}-- _John Gruber_{{< /style >}}
 
 Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like!
 
 {{< admonition tip >}}
-:(far fa-bookmark): Bookmark this page for easy future reference!
+:(far fa-bookmark fa-fw): Bookmark this page for easy future reference!
 {{< /admonition >}}
 
 ## 1 Headings
@@ -441,7 +421,7 @@ The rendered output looks like this:
 
 ### Task Lists
 
-Task lists allow you to create a list of items with checkboxes. To create a task list, add dashes (`-`) and brackets with a space (`[ ]`) in front of task list items. To select a checkbox, add an x in between the brackets (`[x]`).
+Task lists allow you to create a list of items with checkboxes. To create a task list, add dashes (`-`) and brackets with a space (`[ ]`) before task list items. To select a checkbox, add an x in between the brackets (`[x]`).
 
 ```markdown
 - [x] Write the press release

@@ -1,45 +1,26 @@
 ---
 weight: 4
 title: "Theme Documentation - Extended Shortcodes"
-subtitle: ""
 date: 2020-03-03T16:29:41+08:00
 lastmod: 2020-03-03T16:29:41+08:00
 draft: false
 author: "Dillon"
 authorLink: "https://dillonzq.com"
 description: "LoveIt theme provides multiple shortcodes on top of built-in ones in Hugo."
-license: ""
 
 tags: ["shortcodes"]
 categories: ["documentation"]
-hiddenFromHomePage: false
-
 featuredImage: "/images/theme-documentation-extended-shortcodes/featured-image.jpg"
 featuredImagePreview: "/images/theme-documentation-extended-shortcodes/featured-image-preview.jpg"
 
-toc: true
-autoCollapseToc: true
-math: false
-mapbox:
-    accessToken: ""
-    lightStyle: ""
-    darkStyle: ""
-    navigation: true
-    geolocate: true
-    scale: true
-    fullscreen: true
 lightgallery: true
-linkToMarkdown: true
-share:
-  enable: true
-comment: true
 ---
 
 **LoveIt** theme provides multiple shortcodes on top of built-in ones in Hugo.
 
 <!--more-->
 
-## `style`
+## style
 
 `style` is a shortcode to insert custom style in your post.
 
@@ -47,7 +28,7 @@ The `style` shortcode has two positional parameters.
 
 The **first** one is the custom style content.
 
-And the **second** one is the HTML tag around the content you want to change style, and whose default value is `p`.
+And the **second** one is the HTML tag around the content you want to change style, and whose default value is `div`.
 
 Example `style` input:
 
@@ -63,7 +44,7 @@ The rendered output looks like this:
 This is a right-aligned paragraph.
 {{< /style >}}
 
-## `link`
+## link
 
 {{< version 0.2.0 >}}
 
@@ -127,7 +108,7 @@ The rendered output looks like this (hover over the link, there should be a tool
 
 {{< link "https://github.com/upstage/" Upstage "Visit Upstage!" >}}
 
-## `image`
+## image
 
 {{< version 0.2.0 changed >}}
 
@@ -197,7 +178,7 @@ The rendered output looks like this:
 
 {{< image src="/images/theme-documentation-extended-shortcodes/lighthouse.jpg" caption="Lighthouse (`image`)" src-s="/images/theme-documentation-extended-shortcodes/lighthouse-small.jpg" src-l="/images/theme-documentation-extended-shortcodes/lighthouse-large.jpg" >}}
 
-## `admonition`
+## admonition
 
 The `admonition` shortcode supports **12** types of banners to help you put notice in your page.
 
@@ -283,7 +264,7 @@ The rendered output looks like this:
 A **tip** banner
 {{< /admonition >}}
 
-## `mermaid`
+## mermaid
 
 [mermaid](https://mermaidjs.github.io/) is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.
 
@@ -531,7 +512,7 @@ pie
     "Rats" : 15
 {{< /mermaid >}}
 
-## `echarts`
+## echarts
 
 [ECharts](https://echarts.apache.org/) is a library helping you to generate interactive data visualization.
 
@@ -919,7 +900,7 @@ The `echarts` shortcode has also the following named parameters:
 
     {{< version 0.2.0 >}} Height of the data visualization, default value is `30rem`.
 
-## `mapbox`
+## mapbox
 
 {{< version 0.2.0 >}}
 
@@ -993,7 +974,7 @@ The rendered output looks like this:
 
 {{< mapbox -122.252 37.453 10 false "mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true" "mapbox://styles/mapbox/navigation-preview-night-v4?optimize=true" >}}
 
-## `music`
+## music
 
 The `music` shortcode embeds a responsive music player based on [APlayer](https://github.com/MoePlayer/APlayer) and [MetingJS](https://github.com/metowolf/MetingJS).
 
@@ -1132,48 +1113,50 @@ The `music` shortcode has the following named parameters only applying to the ty
 
     Max height of the music list, default value is `340px`.
 
-## `bilibili`
+## bilibili
+
+{{< version 0.2.0 changed >}}
 
 The `bilibili` shortcode embeds a responsive video player for bilibili videos.
 
-When the video only has one part, only the `av` ID of the video is required, e.g.:
+When the video only has one part, only the BV `id` of the video is required, e.g.:
 
 ```code
-https://www.bilibili.com/video/av47027633
+https://www.bilibili.com/video/BV1Sx411T7QQ
 ```
 
 Example `bilibili` input:
 
 ```markdown
-{{</* bilibili 47027633 */>}}
+{{</* bilibili BV1Sx411T7QQ */>}}
 Or
-{{</* bilibili av=47027633 */>}}
+{{</* bilibili id=BV1Sx411T7QQ */>}}
 ```
 
 The rendered output looks like this:
 
-{{< bilibili av=47027633 >}}
+{{< bilibili id=BV1Sx411T7QQ >}}
 
-When the video has multiple parts, in addition to the `av` ID of the video,
+When the video has multiple parts, in addition to the BV `id` of the video,
 `p` is also required, whose default value is `1`, e.g.:
 
 ```code
-https://www.bilibili.com/video/av36570401?p=3
+https://www.bilibili.com/video/BV1TJ411C7An?p=3
 ```
 
 Example `bilibili` input with `p`:
 
 ```markdown
-{{</* bilibili 36570401 3 */>}}
+{{</* bilibili BV1TJ411C7An 3 */>}}
 Or
-{{</* bilibili av=36570401 p=3 */>}}
+{{</* bilibili id=BV1TJ411C7An p=3 */>}}
 ```
 
 The rendered output looks like this:
 
-{{< bilibili av=36570401 p=3 >}}
+{{< bilibili id=BV1TJ411C7An p=3 >}}
 
-## `typeit`
+## typeit
 
 The `typeit` shortcode provides typing animation based on [TypeIt](https://typeitjs.com/).
 

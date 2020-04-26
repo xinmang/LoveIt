@@ -1,45 +1,29 @@
 ---
 weight: 4
 title: "主题文档 - 扩展 Shortcodes"
-subtitle: ""
 date: 2020-03-03T16:29:59+08:00
 lastmod: 2020-03-03T16:29:59+08:00
 draft: false
 author: "Dillon"
 authorLink: "https://dillonzq.com"
 description: "LoveIt 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode."
-license: ""
 
 tags: ["shortcodes"]
 categories: ["documentation"]
-hiddenFromHomePage: false
-
 featuredImage: "/images/theme-documentation-extended-shortcodes/featured-image.jpg"
 featuredImagePreview: "/images/theme-documentation-extended-shortcodes/featured-image-preview.jpg"
 
-toc: true
-autoCollapseToc: true
-math: false
-mapbox:
-    accessToken: ""
-    lightStyle: ""
-    darkStyle: ""
-    navigation: true
-    geolocate: true
-    scale: true
-    fullscreen: true
 lightgallery: true
-linkToMarkdown: true
-share:
-  enable: true
-comment: true
+mapbox:
+  lightStyle: mapbox://styles/mapbox/light-zh-v1?optimize=true
+  darkStyle: mapbox://styles/mapbox/dark-zh-v1?optimize=true
 ---
 
 **LoveIt** 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode.
 
 <!--more-->
 
-## `style`
+## style
 
 `style` shortcode 用来在你的文章中插入自定义样式.
 
@@ -47,7 +31,7 @@ comment: true
 
 第一个参数是自定义样式的内容.
 
-第二个参数是包裹你要更改样式的内容的 HTML 标签, 默认值是 `p`.
+第二个参数是包裹你要更改样式的内容的 HTML 标签, 默认值是 `div`.
 
 一个 `style` 示例:
 
@@ -63,7 +47,7 @@ This is a right-aligned paragraph.
 This is a right-aligned paragraph.
 {{< /style >}}
 
-## `link`
+## link
 
 {{< version 0.2.0 >}}
 
@@ -128,7 +112,7 @@ This is a right-aligned paragraph.
 
 {{< link "https://github.com/upstage/" Upstage "Visit Upstage!" >}}
 
-## `image`
+## image
 
 {{< version 0.2.0 changed >}}
 
@@ -198,7 +182,7 @@ This is a right-aligned paragraph.
 
 {{< image src="/images/theme-documentation-extended-shortcodes/lighthouse.jpg" caption="Lighthouse (`image`)" src-s="/images/theme-documentation-extended-shortcodes/lighthouse-small.jpg" src-l="/images/theme-documentation-extended-shortcodes/lighthouse-large.jpg" >}}
 
-## `admonition`
+## admonition
 
 `admonition` shortcode 支持 **12** 种 帮助你在页面中插入提示的横幅.
 
@@ -284,7 +268,7 @@ This is a right-aligned paragraph.
 一个 **技巧** 横幅
 {{< /admonition >}}
 
-## `mermaid`
+## mermaid
 
 [mermaid](https://mermaidjs.github.io/) 是一个可以帮助你在文章中生成图表和流程图的库, 类似 Markdown 的语法.
 
@@ -532,7 +516,7 @@ pie
     "Rats" : 15
 {{< /mermaid >}}
 
-## `echarts`
+## echarts
 
 [ECharts](https://echarts.apache.org/) 是一个帮助你生成交互式数据可视化的库.
 
@@ -920,7 +904,7 @@ data = [
 
     {{< version 0.2.0 >}} 数据可视化的高度, 默认值是 `30rem`.
 
-## `mapbox`
+## mapbox
 
 {{< version 0.2.0 >}}
 
@@ -983,18 +967,18 @@ data = [
 或者
 {{</* mapbox lng=121.485 lat=31.233 zoom=12 */>}}
 
-{{</* mapbox -122.252 37.453 10 false "mapbox://styles/mapbox/navigation-preview-day-v4" "mapbox://styles/mapbox/navigation-preview-night-v4" */>}}
+{{</* mapbox -122.252 37.453 10 false "mapbox://styles/mapbox/streets-zh-v1" */>}}
 或者
-{{</* mapbox lng=-122.252 lat=37.453 zoom=10 marked=false light-style="mapbox://styles/mapbox/navigation-preview-day-v4" dark-style="mapbox://styles/mapbox/navigation-preview-night-v4" */>}}
+{{</* mapbox lng=-122.252 lat=37.453 zoom=10 marked=false light-style="mapbox://styles/mapbox/streets-zh-v1" */>}}
 ```
 
 呈现的输出效果如下:
 
 {{< mapbox 121.485 31.233 12 >}}
 
-{{< mapbox -122.252 37.453 10 false "mapbox://styles/mapbox/navigation-preview-day-v4?optimize=true" "mapbox://styles/mapbox/navigation-preview-night-v4?optimize=true" >}}
+{{< mapbox -122.252 37.453 10 false "mapbox://styles/mapbox/streets-zh-v1?optimize=true" >}}
 
-## `music`
+## music
 
 `music` shortcode 基于 [APlayer](https://github.com/MoePlayer/APlayer) 和 [MetingJS](https://github.com/metowolf/MetingJS) 提供了一个内嵌的响应式音乐播放器.
 
@@ -1132,47 +1116,49 @@ data = [
 
     音乐列表的最大高度, 默认值是 `340px`.
 
-## `bilibili`
+## bilibili
+
+{{< version 0.2.0 changed >}}
 
 `bilibili` shortcode 提供了一个内嵌的用来播放 bilibili 视频的响应式播放器.
 
-如果视频只有一个部分, 则仅需要视频的 `av` ID, 例如:
+如果视频只有一个部分, 则仅需要视频的 BV `id`, 例如:
 
 ```code
-https://www.bilibili.com/video/av47027633
+https://www.bilibili.com/video/BV1Sx411T7QQ
 ```
 
 一个 `bilibili` 示例:
 
 ```markdown
-{{</* bilibili 47027633 */>}}
+{{</* bilibili BV1Sx411T7QQ */>}}
 或者
-{{</* bilibili av=47027633 */>}}
+{{</* bilibili id=BV1Sx411T7QQ */>}}
 ```
 
 呈现的输出效果如下:
 
-{{< bilibili av=47027633 >}}
+{{< bilibili id=BV1Sx411T7QQ >}}
 
-如果视频包含多个部分, 则除了视频的 `av` ID之外, 还需要 `p`, 默认值为 `1`, 例如:
+如果视频包含多个部分, 则除了视频的 BV `id` 之外, 还需要 `p`, 默认值为 `1`, 例如:
 
 ```code
-https://www.bilibili.com/video/av36570401?p=3
+https://www.bilibili.com/video/BV1TJ411C7An?p=3
 ```
 
 一个带有 `p` 参数的 `bilibili` 示例:
 
 ```markdown
-{{</* bilibili 36570401 3 */>}}
+{{</* bilibili BV1TJ411C7An 3 */>}}
 或者
-{{</* bilibili av=36570401 p=3 */>}}
+{{</* bilibili id=BV1TJ411C7An p=3 */>}}
 ```
 
 呈现的输出效果如下:
 
-{{< bilibili av=36570401 p=3 >}}
+{{< bilibili id=BV1TJ411C7An p=3 >}}
 
-## `typeit`
+## typeit
 
 `typeit` shortcode 基于 [TypeIt](https://typeitjs.com/) 提供了打字动画.
 

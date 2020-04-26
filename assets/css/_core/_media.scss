@@ -1,26 +1,26 @@
 @media only screen and (max-width: 1440px) {
   .page {
-    max-width: 56%;
+    width: 56%;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .page {
-    max-width: 52%;
+    width: 52%;
   }
 }
 
 @media only screen and (max-width: 960px) {
+  #toc-auto {
+    display: none;
+  }
+
+  #toc-static {
+    display: block;
+  }
+
   .page {
-    max-width: 80%;
-
-    #toc-auto {
-      display: none;
-    }
-
-    #toc-static {
-      display: block;
-    }
+    width: 80%;
   }
 }
 
@@ -33,8 +33,12 @@
     display: block;
   }
 
+  body.blur {
+    overflow: hidden;
+  }
+
   .page {
-    max-width: 100%;
+    width: 100%;
     padding-top: $page-padding-top-mobile;
 
     .categories-card {
